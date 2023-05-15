@@ -11,7 +11,7 @@ namespace chuteONumero
         static void Main(string[] args)
         {
             Random numeroAleatorio = new Random();
-            int valor = numeroAleatorio.Next(10);
+            int valor = numeroAleatorio.Next(1,10);
 
             Console.Write("Informe o numero que voce julga ser o que vai sair: ");
             int valorEntrada = int.Parse(Console.ReadLine());
