@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\bin\Debug\somaConjuntoIdades.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\bin\Debug\somaConjuntoIdades.exe
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\bin\Debug\somaConjuntoIdades.pdb
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\obj\Debug\somaConjuntoIdades.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\obj\Debug\somaConjuntoIdades.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\obj\Debug\somaConjuntoIdades.exe
+C:\Users\Trabalho\Documents\focusEstudos\somaConjuntoIdades\somaConjuntoIdades\obj\Debug\somaConjuntoIdades.pdb
