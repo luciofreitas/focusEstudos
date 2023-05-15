@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\bin\Debug\chuteONumero.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\bin\Debug\chuteONumero.exe
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\bin\Debug\chuteONumero.pdb
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\obj\Debug\chuteONumero.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\obj\Debug\chuteONumero.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\obj\Debug\chuteONumero.exe
+C:\Users\Trabalho\Documents\focusEstudos\chuteONumero\chuteONumero\obj\Debug\chuteONumero.pdb
