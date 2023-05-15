@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\bin\Debug\exibirMaiorValor.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\bin\Debug\exibirMaiorValor.exe
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\bin\Debug\exibirMaiorValor.pdb
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\obj\Debug\exibirMaiorValor.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\obj\Debug\exibirMaiorValor.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\obj\Debug\exibirMaiorValor.exe
+C:\Users\Trabalho\Documents\focusEstudos\exibirMaiorValor\exibirMaiorValor\obj\Debug\exibirMaiorValor.pdb
