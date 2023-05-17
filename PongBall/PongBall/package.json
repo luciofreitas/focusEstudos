@@ -1,0 +1,9 @@
+{
+  "name": "pong-ball",
+  "version": "0.0.0",
+  "description": "PongBall",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  }
+}
