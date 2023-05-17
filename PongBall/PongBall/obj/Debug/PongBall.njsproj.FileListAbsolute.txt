@@ -1,3 +1,0 @@
-C:\Users\Trabalho\Documents\focusEstudos\PongBall\PongBall\obj\Debug\PongBall.njsproj.AssemblyReference.cache
-C:\Users\Trabalho\Documents\focusEstudos\PongBall\PongBall\obj\Debug\PongBall.njsproj.CoreCompileInputs.cache
-C:\Users\Trabalho\Documents\focusEstudos\PongBall\PongBall\bin\Microsoft.NodejsTools.WebRole.dll
