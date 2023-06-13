@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\bin\Debug\ArrayEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\bin\Debug\ArrayEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\bin\Debug\ArrayEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\obj\Debug\ArrayEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\obj\Debug\ArrayEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\obj\Debug\ArrayEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\ArrayEstudo\ArrayEstudo\obj\Debug\ArrayEstudo.pdb

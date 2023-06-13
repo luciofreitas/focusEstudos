@@ -1,0 +1,7 @@
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\obj\Debug\AreaFigurasGeometricas.csproj.AssemblyReference.cache
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\obj\Debug\AreaFigurasGeometricas.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\bin\Debug\AreaFigurasGeometricas.exe.config
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\bin\Debug\AreaFigurasGeometricas.exe
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\bin\Debug\AreaFigurasGeometricas.pdb
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\obj\Debug\AreaFigurasGeometricas.exe
+C:\Users\Trabalho\source\repos\AreaFigurasGeometricas\AreaFigurasGeometricas\obj\Debug\AreaFigurasGeometricas.pdb

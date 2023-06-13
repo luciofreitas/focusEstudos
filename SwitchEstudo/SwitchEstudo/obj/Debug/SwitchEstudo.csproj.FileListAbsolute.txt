@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\bin\Debug\SwitchEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\bin\Debug\SwitchEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\bin\Debug\SwitchEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\obj\Debug\SwitchEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\obj\Debug\SwitchEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\obj\Debug\SwitchEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\SwitchEstudo\SwitchEstudo\obj\Debug\SwitchEstudo.pdb

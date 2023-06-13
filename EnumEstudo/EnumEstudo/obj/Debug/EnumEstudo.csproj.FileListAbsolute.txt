@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\bin\Debug\EnumEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\bin\Debug\EnumEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\bin\Debug\EnumEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\obj\Debug\EnumEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\obj\Debug\EnumEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\obj\Debug\EnumEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\EnumEstudo\EnumEstudo\obj\Debug\EnumEstudo.pdb

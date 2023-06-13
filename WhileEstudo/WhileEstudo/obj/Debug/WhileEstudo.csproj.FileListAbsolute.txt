@@ -1,0 +1,6 @@
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\bin\Debug\WhileEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\bin\Debug\WhileEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\bin\Debug\WhileEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\obj\Debug\WhileEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\obj\Debug\WhileEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\WhileEstudo\WhileEstudo\obj\Debug\WhileEstudo.pdb

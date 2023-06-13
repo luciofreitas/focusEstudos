@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\bin\Debug\EnumSwitchEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\bin\Debug\EnumSwitchEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\bin\Debug\EnumSwitchEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\obj\Debug\EnumSwitchEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\obj\Debug\EnumSwitchEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\obj\Debug\EnumSwitchEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\EnumSwitchEstudo\EnumSwitchEstudo\obj\Debug\EnumSwitchEstudo.pdb
