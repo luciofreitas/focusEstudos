@@ -1,0 +1,55 @@
+﻿@model EdicaoUsuarioModel
+
+@using CadastroContatos2.Enums;
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<div class="text-center">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <br />
+    <br />
+    <h1 class="display-4">Edição de Usuario</h1>
+</div>
+
+<form class="text-center" asp-controller="Usuario" asp-action="Alterar" method="post">
+    <input type="hidden"asp-for="Id"/>
+    <div class="mb-3">
+        <input type="text" asp-for="Nome" class="form-control offset-md-4" id="nome" placeholder="Informe seu nome">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Email" class="form-control offset-md-4" id="email" placeholder="Informe seu email">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Login" class="form-control offset-md-4" id="login" placeholder="Informe seu login">
+        @Html.ValidationMessageFor(x => x.Login)
+    </div>
+    <div class="mb-3">
+        <select class="form-control offset-md-4" asp-for="Perfil">
+            <option value="">Tipo de Perfil</option>
+            <option value="@PerfilEnum.Admin">Administrador</option>
+            <option value="@PerfilEnum.Padrao">Padrão</option>
+        </select>
+        @Html.ValidationMessageFor(x => x.Perfil)
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+        <a role="button" class="btn btn-primary" asp-controller="Usuario" asp-action="Index">Cancelar</a>
+    </div>
+
+</form>

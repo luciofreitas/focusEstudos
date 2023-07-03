@@ -1,0 +1,45 @@
+﻿@model ContatoModel
+@{
+    ViewData["Title"] = "Editar Contato";
+}
+
+<div class="text-center">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>
+    }
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+    <br />
+    <h1 class="display-4">Edição do Formulário de Cadastro</h1>
+</div>
+
+<form class="text-center"asp-controller="Contato" asp-action="Alterar" method="post">
+
+    <input type="hidden" asp-for="Id"/>
+    <div class="mb-3">
+        <input type="text" asp-for="Nome" class="form-control offset-md-4" id="nome" placeholder="Informe seu nome">
+        @Html.ValidationMessageFor(x => x.Nome)
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Email" class="form-control offset-md-4" id="email" placeholder="Informe seu email">
+        @Html.ValidationMessageFor(x => x.Email)
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Celular" class="form-control offset-md-4" id="celular" placeholder="Informe seu celular">
+        @Html.ValidationMessageFor(x => x.Celular)
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Alterar</button>
+        <a role="button" class="btn btn-primary" asp-controller="Contato" asp-action="Index">Cancelar</a>
+    </div>
+
+</form>
