@@ -9,19 +9,19 @@ namespace test.Controllers
     public class EmpregadosFullDTOController : Controller
     {
        
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             ViewBag.Empresa = EmpresaService.ObterEmpresa();
             ViewBag.Funcao = FuncaoService.ObterFuncoes();
             ViewBag.Setor = SetorService.ObterSetores();
             EmpregadosFullDTO empregados = new EmpregadosFullDTO();
-            return View(empregados);
+            return PartialView(empregados);
         }
         [HttpPost]
         public ActionResult Salvar(EmpregadosFullDTO empregados)
         {
             ViewBag.Empregado = EmpregadosService.InserirEmpregado(empregados);
-            return RedirectToAction("Criar","EmpregadosFullDTO");
+            return RedirectToAction("Index","EmpregadosDTO");
 
         }
     }

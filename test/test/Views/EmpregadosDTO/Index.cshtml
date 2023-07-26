@@ -9,7 +9,23 @@
 <div class="text-center">
     <h2>Tabela</h2>
 </div>
+<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadForm()">Cadastrar</button>
 
+<div class="modal fade" id="cadastroModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Título do Modal</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModal">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -52,3 +68,14 @@
 
     </tbody>
 </table>
+
+<script>
+    async function loadForm() {
+        const urlFormulario = '/EmpregadosFullDTO/Criar';
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModal').innerHTML = parsedResponse;
+    }
+</script>
