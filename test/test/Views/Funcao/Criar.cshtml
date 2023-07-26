@@ -1,0 +1,29 @@
+﻿@using test.Models
+@model FuncaoModel
+@{
+    ViewBag.Title = "Criação de Funções";
+}
+
+
+@using (Html.BeginForm("Salvar", "Funcao", FormMethod.Post))
+{
+    <div>
+        <h4>Criar Função</h4>
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Nome)
+        @Html.TextBoxFor(Model => Model.Nome)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Nome_Ingles)
+        @Html.TextBoxFor(Model => Model.Nome_Ingles)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Ativa)
+        @Html.CheckBoxFor(Model => Model.Ativa, true)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-default">Cadastrar</button>
+        <button type="reset" class="btn btn-default">Cancelar</button>
+    </div>
+}

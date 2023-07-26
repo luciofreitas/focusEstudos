@@ -1,0 +1,31 @@
+﻿@using test.Models
+@model List<EstadoModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Funções</h2>
+
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Estado</th>
+                <th scope="col">Siglas</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (EstadoModel estado in Model)
+                {
+                    <tr>
+                        <th scope="row">@estado.Nome</th>
+                        <td>@estado.Siglas</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>

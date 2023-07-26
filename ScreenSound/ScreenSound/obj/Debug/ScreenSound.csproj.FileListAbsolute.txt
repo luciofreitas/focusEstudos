@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\bin\Debug\ScreenSound.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\bin\Debug\ScreenSound.exe
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\bin\Debug\ScreenSound.pdb
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\obj\Debug\ScreenSound.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\obj\Debug\ScreenSound.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\obj\Debug\ScreenSound.exe
+C:\Users\Trabalho\Documents\focusEstudos\ScreenSound\ScreenSound\obj\Debug\ScreenSound.pdb

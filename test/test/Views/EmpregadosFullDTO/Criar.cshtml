@@ -1,0 +1,112 @@
+﻿@using test.DTOs;
+@model EmpregadosFullDTO
+@{
+    ViewBag.Title = "Criar";
+}
+
+
+
+@using (Html.BeginForm("Salvar", "EmpregadosFullDTO", FormMethod.Post))
+{
+    <div>
+        <h2>Criar Empregado</h2>
+    </div>
+    <div>
+        @Html.LabelFor(model => model.CPF)
+        @Html.TextBoxFor(model => model.CPF)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Empresa")
+        <select name="Empresa">
+            <option value=""> Selecione a Empresa</option>
+            @foreach (var empresa in ViewBag.Empresa)
+            {
+                <option value="@empresa.ID">@empresa.RazaoSocial</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Nome)
+        @Html.TextBoxFor(model => model.Nome)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.RGPassaporte)
+        @Html.TextBoxFor(model => model.RGPassaporte)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.MatriculaESocial)
+        @Html.TextBoxFor(model => model.MatriculaESocial)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.NitPisPasep)
+        @Html.TextBoxFor(model => model.NitPisPasep)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.NomeMae)
+        @Html.TextBoxFor(model => model.NomeMae)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Nacionalidade)
+        @Html.TextBoxFor(model => model.Nacionalidade)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Data_Nascimento)
+        @Html.TextBox("Data_Nascimento", Model.Data_Nascimento, new { @class = "datepicker", @type = "date" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Ultimo_ASO)
+        @Html.TextBox("Ultimo_ASO", Model.Ultimo_ASO, new { @class = "datepicker", @type = "date" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Celular)
+        @Html.TextBoxFor(model => model.Celular)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Sexo")
+        <select name="Sexo">
+            <option>Selecione seu sexo</option>
+            <option value="M">Masculino</option>
+            <option value="F">Feminino</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.TipoSanguineo)
+        @Html.TextBoxFor(model => model.TipoSanguineo)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Cod_Categoria_eSocial)
+        @Html.TextBoxFor(model => model.Cod_Categoria_eSocial)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Ativo)
+        @Html.CheckBoxFor(model => model.Ativo, true)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Funcao")
+        <select name="Funcao">
+            <option value=""> Selecione a Função</option>
+            @foreach (var funcao in ViewBag.Funcao)
+            {
+                <option value="@funcao.Id">@funcao.Nome</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        @Html.Label("Setor")
+        <select name="Setor">
+            <option value=""> Selecione o Setor</option>
+            @foreach (var setor in ViewBag.Setor)
+            {
+                <option value="@setor.Id">@setor.Nome</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-default">Cadastrar</button>
+        <button type="reset" class="btn btn-default">Cancelar</button>
+    </div>
+}

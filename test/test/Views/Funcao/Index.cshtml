@@ -1,0 +1,44 @@
+﻿@using test.Models
+@model List<FuncaoModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Funções</h2>
+
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Função</th>
+                <th scope="col">Function</th>
+                <th scope="col">Ativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (FuncaoModel funcao in Model)
+                {
+                    <tr>
+                        <th scope="row">@funcao.Nome</th>
+                        <td>@funcao.Nome_Ingles</td>
+                        <td>
+                            @if (funcao.Ativa)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+
+

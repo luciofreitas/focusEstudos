@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Confirmação da deleção de Contatos";
+}
+<br />
+<br />
+<br />
+<div class="text-center">
+    <h3>Nome do Usuario</h3>
+    <h4>Deseja realmente excluir o usuario?</h4>
+</div>
+<br/>
+<div class="text-center">
+    <button type="submit" class="btn btn-danger" asp-controller="Contatos" asp-action="Apagar">Sim</button>
+    <a role="button" class="btn btn-primary" asp-controller="Contatos" asp-action="Index">Não</a>
+</div>

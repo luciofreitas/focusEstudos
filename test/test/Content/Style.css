@@ -1,0 +1,12 @@
+﻿.divAtualizar {
+}
+
+.cb-div-master {
+    display: flex;
+    flex-direction: row;
+}
+
+.btn-div {
+    border: 1px solid black;
+    text-align: center;
+}

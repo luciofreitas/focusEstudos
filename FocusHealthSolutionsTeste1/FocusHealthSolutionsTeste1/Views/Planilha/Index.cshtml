@@ -1,0 +1,125 @@
+﻿@model List<PlanilhaModel>
+@{
+    ViewData["Title"] = "Planilha de Controle";
+}
+<div class="text-primary text-left" style="padding-left: 10px">
+    <a>Planilha de Controle</a>
+</div>
+<br />
+<div class="d-grid gap-2">
+    <button class="btn" style=" background-color: #F1F1F1" type="submit">Exportar para Excel</button>
+</div>
+<br />
+<table class="table" id="table-planilha">
+
+    <thead>
+        <tr style=" background-color: #F1F1F1">
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Agendado em</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Ficha</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Parceiro</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Colaborador</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Natureza</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Agendado para</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Conf.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Pres.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">ASO Up.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">ASO Prot.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Pend.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Tem Av.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Tem Res.</th>
+            <th scope="col" class="font-weight-normal" style="border-left: 1px solid grey; border-right: 1px solid grey">Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (PlanilhaModel dado in Model)
+            {
+                <tr>
+                    <th scope="row" style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Agendado_Em</th>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Ficha</td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Parceiro</td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Colaborador</td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Natureza</td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">@dado.Agendado_Para</td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.Conf)
+                        {
+
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.Pres)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.ASO_Up)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.ASO_Prot)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.Pend)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.Tem_Av)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        @if (dado.Tem_Res)
+                        {
+                            <i class="bi bi-check"></i>
+                        }
+                        else
+                        {
+                            <i class="bi bi-x-lg"></i>
+                        }
+                    </td>
+                    <td style="border-left: 1px solid grey; border-right: 1px solid grey">
+                        <a type="submit" class="btn" style=" background-color: #F1F1F1" href="/Planilha/Editar?ficha=@dado.Ficha">Confirmar</a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+

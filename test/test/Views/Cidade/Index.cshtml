@@ -1,0 +1,31 @@
+﻿@using test.Models
+@model List<CidadeEstadoDTO>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Cidades</h2>
+
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (CidadeEstadoDTO cidadeEstado in Model)
+                {
+                    <tr>
+                        <th scope="row">@cidadeEstado.Nome</th>
+                        <td>@cidadeEstado.NomeEstado</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>

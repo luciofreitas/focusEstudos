@@ -1,0 +1,9 @@
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.AssemblyInfoInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.AssemblyInfo.cs
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.RazorAssemblyInfo.cache
+C:\Users\Trabalho\Documents\focusEstudos\FocusHealthSolutionsTeste2\FocusHealthSolutionsTeste2\obj\Debug\net5.0\FocusHealthSolutionsTeste2.RazorAssemblyInfo.cs

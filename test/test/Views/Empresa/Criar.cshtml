@@ -1,0 +1,74 @@
+﻿@using test.DTOs;
+@model EmpresaDTO
+@{
+    ViewBag.Title = "Criar";
+}
+
+<h2>Criar</h2>
+
+@using (Html.BeginForm("Salvar", "Empresa", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.LabelFor(model => model.RazaoSocial)
+        @Html.TextBoxFor(model => model.RazaoSocial)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.NumeroEmpregados)
+        @Html.TextBoxFor(model => model.NumeroEmpregados)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.CNAE)
+        @Html.TextBoxFor(model => model.CNAE)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Data_Cadastro)
+        @Html.TextBox("Data_Cadastro", Model.Data_Cadastro, new { @class = "datepicker", @type = "date" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Observacao)
+        @Html.TextBoxFor(model => model.Observacao)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.CNPJ)
+        @Html.TextBoxFor(model => model.CNPJ)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Endereco)
+        @Html.TextBoxFor(model => model.Endereco)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Complemento)
+        @Html.TextBoxFor(model => model.Complemento)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.Bairro)
+        @Html.TextBoxFor(model => model.Bairro)
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(model => model.CEP)
+        @Html.TextBoxFor(model => model.CEP)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Cidade")
+        <select name="Cidade">
+            <option value=""> Selecione a Cidade</option>
+            @foreach (var cidade in ViewBag.Cidade)
+            {
+                <option value="@cidade.ID">@cidade.Nome</option>
+            }
+        </select>
+    </div>
+    <div class="mb-3">
+        @Html.Label("AtividadeEconomica")
+        <select name="Atividade_Economica">
+            <option value=""> Selecione Atividade Economica</option>
+            @foreach (var ae in ViewBag.AtividadeEconomica)
+            {
+                <option value="@ae.ID">@ae.Nome</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <button type="reset" class="btn btn-primary">Cancelar</button>
+}

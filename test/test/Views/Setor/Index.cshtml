@@ -1,0 +1,44 @@
+﻿@using test.Models
+@model List<SetorModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Setores</h2>
+
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Setor</th>
+                <th scope="col">Sector</th>
+                <th scope="col">Ativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (SetorModel setor in Model)
+                {
+                    <tr>
+                        <th scope="row">@setor.Nome</th>
+                        <td>@setor.Nome_Ingles</td>
+                        <td>
+                            @if (setor.Ativa)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+
+

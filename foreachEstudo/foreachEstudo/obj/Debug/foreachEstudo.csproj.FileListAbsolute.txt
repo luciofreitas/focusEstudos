@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\bin\Debug\foreachEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\bin\Debug\foreachEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\bin\Debug\foreachEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\obj\Debug\foreachEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\obj\Debug\foreachEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\obj\Debug\foreachEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\foreachEstudo\foreachEstudo\obj\Debug\foreachEstudo.pdb

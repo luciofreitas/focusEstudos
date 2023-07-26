@@ -1,0 +1,42 @@
+﻿@using test.Models
+@model List<AtividadeEconomicaModel>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Atividades Economicas</h2>
+
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Codigo</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Ativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (AtividadeEconomicaModel ae in Model)
+                {
+                    <tr>
+                        <td>@ae.Codigo</td>
+                        <th scope="row">@ae.Nome</th>
+                        <td>
+                            @if (ae.Ativa)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>

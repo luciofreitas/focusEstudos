@@ -1,0 +1,50 @@
+﻿@using test.DTOs
+@model List<EmpresaDTO>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">RazaoSocial</th>
+            <th scope="col">NumeroEmpregados</th>
+            <th scope="col">CNAE</th>
+            <th scope="col">DataCadastro</th>
+            <th scope="col">Observação</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Endereço</th>
+            <th scope="col">Complemento</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">CEP</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Atv. Economica</th>
+            <th scope="col">Cidade</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EmpresaDTO empresa in Model)
+        {
+            <tr>
+                <th scope="row">@empresa.RazaoSocial</th>
+                <td>@empresa.NumeroEmpregados</td>
+                <td>@empresa.CNAE</td>
+                <td>@empresa.Data_Cadastro</td>
+                <td>@empresa.Observacao</td>
+                <td>@empresa.CNPJ</td>
+                <td>@empresa.Endereco</td>
+                <td>@empresa.Complemento</td>
+                <td>@empresa.Bairro</td>
+                <td>@empresa.CEP</td>
+                <td>@empresa.CNPJ</td>
+                <td>@empresa.Atividade_Economica</td>
+                <td>@empresa.Cidade</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

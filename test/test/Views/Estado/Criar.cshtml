@@ -1,0 +1,25 @@
+﻿@using test.Models
+@model EstadoModel
+@{
+    ViewBag.Title = "Criar";
+}
+
+@using (Html.BeginForm("Salvar", "Estado", FormMethod.Post))
+{
+    <div>
+        <h4>Criar Estado</h4>
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Nome)
+        @Html.TextBoxFor(Model => Model.Nome)
+    </div>
+    <div>
+        @Html.LabelFor(Model => Model.Siglas)
+        @Html.TextBoxFor(Model => Model.Siglas)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-default">Cadastrar</button>
+        <button type="reset" class="btn btn-default">Cancelar</button>
+    </div>
+}
+

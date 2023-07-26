@@ -1,0 +1,30 @@
+﻿@using test.Models;
+@model CidadeModel
+@{
+    ViewBag.Title = "Criar";
+}
+
+@using (Html.BeginForm("Salvar", "Cidade", FormMethod.Post))
+{
+    <div>
+        Criar Cidade
+    </div>
+    <div>
+        @Html.LabelFor(model => model.Nome)
+        @Html.TextBoxFor(model => model.Nome)
+    </div>
+    <div>
+        @Html.Label("Estado")
+        <select name="Estado_ID">
+            <option value=""> Selecione um Estado</option>
+            @foreach (var estado in ViewBag.Estados)
+            {
+                <option value="@estado.ID">@estado.Nome</option>
+            }
+        </select>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-default">Cadastrar</button>
+        <button type="reset" class="btn btn-default">Cancelar</button>
+    </div>
+}

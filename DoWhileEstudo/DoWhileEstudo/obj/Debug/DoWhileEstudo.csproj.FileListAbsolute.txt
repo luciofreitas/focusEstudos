@@ -1,0 +1,7 @@
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\bin\Debug\DoWhileEstudo.exe.config
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\bin\Debug\DoWhileEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\bin\Debug\DoWhileEstudo.pdb
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\obj\Debug\DoWhileEstudo.csproj.AssemblyReference.cache
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\obj\Debug\DoWhileEstudo.csproj.CoreCompileInputs.cache
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\obj\Debug\DoWhileEstudo.exe
+C:\Users\Trabalho\Documents\focusEstudos\DoWhileEstudo\DoWhileEstudo\obj\Debug\DoWhileEstudo.pdb

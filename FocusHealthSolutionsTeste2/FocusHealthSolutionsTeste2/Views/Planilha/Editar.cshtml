@@ -1,0 +1,63 @@
+﻿@model PlanilhaModel
+@{
+    ViewData["Title"] = "Edição de Informações";
+}
+<br />
+<div class="text-center">
+    <h5>Cadastro Novo Elemento</h5>
+</div>
+<br />
+<br />
+<form asp-controller="Planilha" asp-action="Alterar" method="post">
+    <input type="hidden" asp-for="Ficha" />
+    <div class="mb-3 formulario">
+        <input type="text" asp-for="Ficha" class="form-control offset-md-4" id="ficha" style="width: 50%" placeholder="Informe qual é a ficha" />
+    </div>
+    <div class="mb-3">
+        <input type="datetime-local" asp-for="Agendado_Em" class="form-control offset-md-4" style="width: 35%;" id="agendadoEm" placeholder="Informe quando foi agendado" />
+    </div>
+    <div class="mb-3">
+        <input type="datetime-local" asp-for="Agendado_Para" class="form-control offset-md-4" style="width: 35%" ; id="agendadoPara" placeholder="Informe para quando foi agendado" />
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Parceiro" class="form-control offset-md-4" id="parceiro" style="width: 50%" placeholder="Informe o nome do parceiro" />
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Colaborador" class="form-control offset-md-4" id="colaborador" style="width: 50%" placeholder="Informe o nome do colaborador" />
+    </div>
+    <div class="mb-3">
+        <input type="text" asp-for="Natureza" class="form-control offset-md-4" id="natureza" style="width: 50%" placeholder="Informe a natureza" />
+    </div>
+    <div class="cb-label-divs mb-3">
+        <div class="cb-label-divs-1 mb-3">
+            <div class="label-divs-1">
+                <label id="conf">Conf</label>
+                <label id="pres">Pres</label>
+                <label id="aso-up">ASO_Up</label>
+                <label id="aso-prot">ASO_Prot</label>
+            </div>
+            <div class="cb-divs-1">
+                <input type="checkbox" asp-for="Conf" class="form-control offset-md-4" id="conf" placeholder="Conf" />
+                <input type="checkbox" asp-for="Pres" class="form-control offset-md-4" id="pres" placeholder="Pres" />
+                <input type="checkbox" asp-for="ASO_Up" class="form-control offset-md-4" id="aso-up" placeholder="ASO_Up" />
+                <input type="checkbox" asp-for="ASO_Prot" class="form-control offset-md-4" id="aso-prot" placeholder="ASO_Prot" />
+            </div>
+        </div>
+        <div class="cb-label-divs-2 mb-3">
+            <div class="label-divs-2">
+                <label id="pend">Pend</label>
+                <label id="tem-av">Tem_Av</label>
+                <label id="tem-res">Tem_Res</label>
+            </div>
+            <div class="cb-divs-2">
+                <input type="checkbox" asp-for="Pend" class="form-control offset-md-4" id="pend" placeholder="Pend" />
+                <input type="checkbox" asp-for="Tem_Av" class="form-control offset-md-4" id="tem-av" placeholder="Tem_Av" />
+                <input type="checkbox" asp-for="Tem_Res" class="form-control offset-md-4" id="tem-res" placeholder="Tem_Res" />
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <button type="submit" class="btn" style="background-color: #F1F1F1">Confirmar</button>
+        <a role="button" class="btn" style="color: black; background-color: #F1F1F1" asp-controller="Planilha" asp-action="Index">Cancelar</a>
+    </div>
+</form>
