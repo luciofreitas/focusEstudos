@@ -1,12 +1,86 @@
-﻿.divAtualizar {
+﻿.input {
+    border-radius: 2px;
+    border: 1px solid #e5e5e5;
+    opacity: 1;
+    line-height: 20px;
+}
+.input,
+.lb-class {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 5px;
 }
 
-.cb-div-master {
+.div-form {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
+}
+.div-input-validatiton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.lb-class {
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
 }
 
-.btn-div {
-    border: 1px solid black;
-    text-align: center;
+.btn-atualizar{
+    color: white;
+    background-color: orange;
 }
+
+.field-validation-error {
+    color: #e01d1d;
+}
+
+.close-alert {
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    border-radius: 15px;
+    width: 30px;
+    height: 31px;
+}
+.size-text-danger {
+    font-size: 10px !important;
+}
+.modal-content{
+    width: 530px !important;
+}
+
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+    .selectBox select {
+        width: 100%;
+        font-weight: bold;
+    }
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+    #checkboxes label {
+        display: block;
+    }
+
+        #checkboxes label:hover {
+            background-color: #1e90ff;
+        }

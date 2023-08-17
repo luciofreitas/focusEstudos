@@ -4,27 +4,31 @@
     ViewBag.Title = "Criar";
 }
 
-@using (Html.BeginForm("Salvar", "Cidade", FormMethod.Post))
+@using (Html.BeginForm("Salvar", "Cidade", FormMethod.Post, new { @id = "formCidade" }))
 {
     <div>
-        Criar Cidade
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Nome)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Nome, new { @class = "input", id = "nome" })</div>
+                <div><span id="nomeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Estado")</label>
+            <div class="div-input-validatiton">
+                <select name="Estado_ID" class="input" id="estado">
+                    <option value=""></option>
+                    @foreach (var estado in ViewBag.Estados)
+                    {
+                        <option value="@estado.ID">@estado.Nome</option>
+                    }
+                </select>
+                <div><span id="estadoAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
     </div>
-    <div>
-        @Html.LabelFor(model => model.Nome)
-        @Html.TextBoxFor(model => model.Nome)
-    </div>
-    <div>
-        @Html.Label("Estado")
-        <select name="Estado_ID">
-            <option value=""> Selecione um Estado</option>
-            @foreach (var estado in ViewBag.Estados)
-            {
-                <option value="@estado.ID">@estado.Nome</option>
-            }
-        </select>
-    </div>
-    <div>
-        <button type="submit" class="btn btn-default">Cadastrar</button>
-        <button type="reset" class="btn btn-default">Cancelar</button>
-    </div>
+
 }

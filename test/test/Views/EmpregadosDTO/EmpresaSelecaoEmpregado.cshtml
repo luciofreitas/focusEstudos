@@ -1,0 +1,27 @@
+﻿@using test.DTOs
+@model List<EmpregadosDTO>
+@{
+    ViewBag.Title = "EmpresaSelecaoEmpregado";
+}
+
+<h3>Dados de Empregados</h3>
+
+<select name="Empresa" class="input" id="empresaSelecao2" onchange="loadSelecaoEmpresa(this)">
+    <option value="">Selecione a Empresa</option>
+    @foreach (var empresa in ViewBag.EmpresaSelecaoEmpregado)
+    {
+        if (empresa.Ativa)
+        {
+            <option value="@empresa.ID">@empresa.RazaoSocial</option>
+        }
+    }
+</select>
+
+<script>
+    async function loadSelecaoEmpresa(empregado) {
+        if (empregado.value != null) {
+            window.location.href = `/EmpregadosDTO/EmpresaSelecaoEmpregado?empresaID=${empregado.value}`;
+        }
+    }
+</script>
+

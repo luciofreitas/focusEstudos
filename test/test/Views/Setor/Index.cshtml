@@ -3,15 +3,34 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<br />
+<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormSetor()">Cadastrar</button>
 
-<h2>Tabela Setores</h2>
+<div class="modal fade" id="cadastroModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Setor</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModal">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateSetor()" onclick="submitFormSetor()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <form method="get">
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Setor</th>
-                <th scope="col">Sector</th>
+                <th scope="col">Função</th>
+                <th scope="col">Function</th>
                 <th scope="col">Ativa</th>
             </tr>
         </thead>
@@ -40,5 +59,28 @@
         </tbody>
     </table>
 </form>
+<script>
+    async function loadFormSetor() {
+        const urlFormulario = '/Setor/Criar';
 
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModal').innerHTML = parsedResponse;
+    }
+    function submitFormSetor() {
+        const form = document.getElementById('formSetor');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = ValidateSetor();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+</script>
 

@@ -1,0 +1,43 @@
+﻿@using test.DTOs
+@model List<EmpregadosDTO>
+@{
+    ViewBag.Title = "EmpresaSelecaoEmpregado";
+}
+
+<h3>Dados de Empregados</h3>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+        <select class="js-example-basic-multiple" multiple="multiple" style="width: 300px;">
+            @foreach (var empresa in ViewBag.MultiEmpresaSelecaoEmpregado)
+            {
+                <option value="@empresa.ID">@empresa.RazaoSocial</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-12">
+        <button type="button" onclick="loadSelecaoMultiEmpresa(this)">Pesquisar...</button>
+    </div>  
+</div>
+
+<script>
+    async function loadSelecaoMultiEmpresa() {
+        var selectedEmpresas = $('.js-example-basic-multiple').val();
+        if (selectedEmpresas != null && selectedEmpresas.length > 0) {
+            var empresasQueryString = selectedEmpresas.join('&empresaID=');
+            localStorage.setItem('selectedEmpresas', JSON.stringify(selectedEmpresas));
+            window.location.href = `/MultiEmpresas/MultiEmpresaSelecaoEmpregados?empresaID=${empresasQueryString}`;
+        }
+    }
+    window.addEventListener('load', () => {
+        $(document).ready(function () {
+            $('select').select2({
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                closeOnSelect: false,
+            });
+        });
+    });
+</script>
+

@@ -41,6 +41,38 @@ namespace test.Services
             }
             return list;
         }
+        public static List<EmpresaDTO> ObterEmpresaSelecionadas(int[] empresaID)
+        {
+            string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
+
+            List<EmpresaDTO> list = new List<EmpresaDTO>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                var empSelecionada = string.Join(",", empresaID);
+
+                string sql = $"SELECT ID, RazaoSocial FROM Empresa WHERE ID IN ({empSelecionada}) ";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            EmpresaDTO empresa = new EmpresaDTO();
+
+                            empresa.ID = int.Parse(reader["ID"].ToString());
+                            empresa.RazaoSocial = reader["RazaoSocial"].ToString();
+
+                            list.Add(empresa);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
         public static List<EmpresaDTO> InserirEmpresa(EmpresaDTO empresa)
         {
             string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
@@ -52,8 +84,8 @@ namespace test.Services
                 connection.Open();
 
                 const string sql = 
-                    @"INSERT INTO Empresa(RazaoSocial, NumeroEmpregados, CNAE, Data_Cadastro, Observacao, CNPJ, Endereco, Complemento, Bairro, CEP, Atividade_Economica_ID, Cidade_ID) 
-                      VALUES(@RazaoSocial, @NumeroEmpregados, @CNAE, @Data_Cadastro, @Observacao, @CNPJ, @Endereco, @Complemento, @Bairro, @CEP, @Atividade_Economica_ID, @Cidade_ID);";
+                    @"INSERT INTO Empresa(RazaoSocial, NumeroEmpregados, CNAE, Data_Cadastro, Observacao, CNPJ, Endereco, Complemento, Bairro, CEP, Atividade_Economica_ID, Cidade_ID, Ativa) 
+                      VALUES(@RazaoSocial, @NumeroEmpregados, @CNAE, @Data_Cadastro, @Observacao, @CNPJ, @Endereco, @Complemento, @Bairro, @CEP, @Atividade_Economica_ID, @Cidade_ID, @Ativa);";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -69,6 +101,7 @@ namespace test.Services
                     command.Parameters.AddWithValue("@CEP", empresa.CEP);
                     command.Parameters.AddWithValue("@Atividade_Economica_ID", empresa.Atividade_Economica);
                     command.Parameters.AddWithValue("@Cidade_ID", empresa.Cidade);
+                    command.Parameters.AddWithValue("@Ativa", empresa.Ativa);
 
 
                     command.ExecuteNonQuery();

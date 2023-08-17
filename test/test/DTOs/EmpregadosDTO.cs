@@ -7,6 +7,8 @@ namespace test.DTOs
 {
     public class EmpregadosDTO
     {
+        public int ID { get; set; }
+        public string Empresa { get; set; }
         public string Nome { get; set; }
         public string CPF { get; set; }
         public string RG_Passaport { get; set; }

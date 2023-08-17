@@ -43,10 +43,10 @@ namespace test.Controllers
             }
             return View(list);
         }
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             SetorModel setor = new SetorModel();
-            return View(setor);
+            return PartialView(setor);
         }
 
         [HttpPost]

@@ -44,10 +44,10 @@ namespace test.Controllers
 
             return View(list);
         }
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             AtividadeEconomicaModel ae = new AtividadeEconomicaModel();
-            return View(ae);
+            return PartialView(ae);
         }
 
         [HttpPost]
@@ -59,19 +59,19 @@ namespace test.Controllers
             {
                 connection.Open();
 
-                string sql = "INSERT INTO dbo.AtividadeEconomica(Codigo, Nome,Ativa) VALUES(@Codigo,@Nome,@Ativa)";
+                string sql = "INSERT INTO dbo.AtividadeEconomica(Codigo, Nome,Ativo) VALUES(@Codigo,@Nome,@Ativo)";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("@Codigo", ae.Codigo);
                     command.Parameters.AddWithValue("@Nome", ae.Nome);
-                    command.Parameters.AddWithValue("@Ativa", ae.Ativa);
+                    command.Parameters.AddWithValue("@Ativo", ae.Ativa);
 
                     command.ExecuteNonQuery();
                 }
                 connection.Close();
             }
-            return RedirectToAction("Criar");
+            return RedirectToAction("Index","AtividadeEconomica");
 
         }
     }

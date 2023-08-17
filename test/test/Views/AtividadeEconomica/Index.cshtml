@@ -3,8 +3,28 @@
 @{
     ViewBag.Title = "Index";
 }
+<br />
+<br />
 
-<h2>Tabela Atividades Economicas</h2>
+<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormAtividadeEconomica()">Cadastrar</button>
+
+<div class="modal fade" id="cadastroModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Atividades Economicas</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModal">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateAtividadeEconomica()" onclick="submitFormAtividadeEconomica()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <form method="get">
     <table class="table">
@@ -40,3 +60,27 @@
         </tbody>
     </table>
 </form>
+<script>
+    async function loadFormAtividadeEconomica() {
+        const urlFormulario = '/AtividadeEconomica/Criar';
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModal').innerHTML = parsedResponse;
+    }
+    function submitFormAtividadeEconomica() {
+        const form = document.getElementById('formAtividadeEconomica');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = ValidateAtividadeEconomica();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+</script>

@@ -1,31 +1,50 @@
 ﻿@using test.DTOs
 @model List<EmpregadosDTO>
-
-
 @{
     ViewBag.Title = "Index";
 }
-
-<div class="text-center">
-    <h2>Tabela</h2>
+<br />
+<br />
+<div>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cadastroModal" onclick="loadForm()"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
 </div>
-<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadForm()">Cadastrar</button>
 
 <div class="modal fade" id="cadastroModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Título do Modal</h4>
+                <h5 class="modal-title">Cadastro de Empregado</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" id="bodyModal">
+
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => Validate()" onclick="submitForm()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="edicaoModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edição de Empregado</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModalEdicao">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateEdition()" onclick="submitFormEdicao()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Editar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -43,12 +62,13 @@
             <th scope="col">Atv. Economica</th>
             <th scope="col">Cidade</th>
             <th scope="col">Estado</th>
+            <th scope="col">Editar/Apagar</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="corpoTabelaEmpregados">
         @foreach (var dado in Model)
         {
-            <tr>
+            <tr data-empresa="@dado.Empresa" id="listaEmpregados">
                 <th scope="row">@dado.Nome</th>
                 <td>@dado.CPF</td>
                 <td>@dado.RG_Passaport</td>
@@ -63,9 +83,12 @@
                 <td>@dado.Atividade_Economica</td>
                 <td>@dado.Cidade</td>
                 <td>@dado.Estado</td>
+                <td style="display: flex; justify-content: space-around;">
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoModal" onclick="loadFormEdicao(@dado.ID)" id="btnConfirmarApagar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteEmpregados(@dado.ID,'@dado.Nome')" id="btnConfirmarApagar"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #fff;"></span></button>
+                </td>
             </tr>
         }
-
     </tbody>
 </table>
 
@@ -78,4 +101,72 @@
 
         document.getElementById('bodyModal').innerHTML = parsedResponse;
     }
+    async function loadFormEdicao(empregadoID) {
+        const urlFormulario = `/EmpregadosDTO/Editar?id=${empregadoID}`;
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModalEdicao').innerHTML = parsedResponse;
+        
+    }
+    function submitForm() {
+        const form = document.getElementById('form');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = Validate();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+    function submitFormEdicao() {
+        const form = document.getElementById('formEdicao');
+        if (!form) {
+            console.error("Formulario não encontrado")
+            return;
+        }
+        var isValid = ValidateEdition();
+        if (isValid) {
+            event.preventDefault();
+            var data = new FormData(form);
+            var object = {};
+            data.forEach((value, key) => object[key] = value);
+            var json = JSON.stringify(object);
+            $("btnConfirmarApagar").prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/EmpregadosDTO/Alterar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        } else {
+            console.log("Formulario inválido! Verifique os campso");
+        }
+    }
+    function btnDeleteEmpregados(empregadoID, empregadoNome) {
+        if (confirm(`Deseja realmente deletar o ${empregadoNome}?`))
+        {
+            var json = { empregadoID: empregadoID }
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: `/EmpregadosDTO/Apagar`,
+                data: JSON.stringify(json),
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        }
+    }
 </script>
+

@@ -43,11 +43,11 @@ namespace test.Controllers
             return View(list);
         }
 
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             ViewBag.Estados = EstadoService.ObterEstados();
             CidadeModel cidade = new CidadeModel();
-            return View(cidade);
+            return PartialView(cidade);
         }
 
         [HttpPost]

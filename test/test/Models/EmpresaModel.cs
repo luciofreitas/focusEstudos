@@ -21,5 +21,6 @@ namespace test.Models
         public string CEP { get; set; }
         public int Atividade_Economica_ID { get; set; }
         public int Cidade_ID { get; set; }
+        public bool Ativa { get; set; }
     }
 }

@@ -42,6 +42,7 @@ namespace test.Controllers
                             empresa.CEP = reader["CEP"].ToString();
                             empresa.Atividade_Economica = reader["AtividadeEconomica"].ToString();
                             empresa.Cidade = reader["Cidade"].ToString();
+                            empresa.Ativa = Boolean.Parse(reader["Ativa"].ToString());
                             list.Add(empresa);
                         }
                     }
@@ -49,12 +50,13 @@ namespace test.Controllers
             }
             return View(list);
         }
-        public ActionResult Criar()
+
+        public PartialViewResult Criar()
         {
             ViewBag.AtividadeEconomica = AtividadeEconomicaService.ObterAtividadeEconomica();
             ViewBag.Cidade = CidadeService.ObterCidade();
             EmpresaDTO empresa = new EmpresaDTO();
-            return View(empresa);
+            return PartialView(empresa);
         }
 
         [HttpPost]

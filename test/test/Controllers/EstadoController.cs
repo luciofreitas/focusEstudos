@@ -41,10 +41,10 @@ namespace test.Controllers
             }
             return View(list);
         }
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             EstadoModel estado = new EstadoModel();
-            return View(estado);
+            return PartialView(estado);
         }
 
         [HttpPost]

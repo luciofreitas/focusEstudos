@@ -44,10 +44,10 @@ namespace test.Controllers
 
             return View(list);
         }
-        public ActionResult Criar()
+        public PartialViewResult Criar()
         {
             FuncaoModel funcao = new FuncaoModel();
-            return View(funcao);
+            return PartialView(funcao);
         }
 
         [HttpPost]

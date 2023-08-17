@@ -5,46 +5,117 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Tabela</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">RazaoSocial</th>
-            <th scope="col">NumeroEmpregados</th>
-            <th scope="col">CNAE</th>
-            <th scope="col">DataCadastro</th>
-            <th scope="col">Observação</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Endereço</th>
-            <th scope="col">Complemento</th>
-            <th scope="col">Bairro</th>
-            <th scope="col">CEP</th>
-            <th scope="col">CNPJ</th>
-            <th scope="col">Atv. Economica</th>
-            <th scope="col">Cidade</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (EmpresaDTO empresa in Model)
-        {
+<br />
+<br />
+<div class="text-center">
+    @if (TempData["MensagemSucesso"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemSucesso"]
+        </div>}
+    @if (TempData["MensagemErro"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+            @TempData["MensagemErro"]
+        </div>
+    }
+</div>
+<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormEmpresa()">Cadastrar</button>
+<div class="modal fade" id="cadastroModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Empresas</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModal">
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateEmpresa()" onclick="submitFormEmpresa()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form method="get">
+    <table class="table">
+        <thead>
             <tr>
-                <th scope="row">@empresa.RazaoSocial</th>
-                <td>@empresa.NumeroEmpregados</td>
-                <td>@empresa.CNAE</td>
-                <td>@empresa.Data_Cadastro</td>
-                <td>@empresa.Observacao</td>
-                <td>@empresa.CNPJ</td>
-                <td>@empresa.Endereco</td>
-                <td>@empresa.Complemento</td>
-                <td>@empresa.Bairro</td>
-                <td>@empresa.CEP</td>
-                <td>@empresa.CNPJ</td>
-                <td>@empresa.Atividade_Economica</td>
-                <td>@empresa.Cidade</td>
+                <th scope="col">RazaoSocial</th>
+                <th scope="col">NumeroEmpregados</th>
+                <th scope="col">CNAE</th>
+                <th scope="col">DataCadastro</th>
+                <th scope="col">Observação</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Complemento</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">CEP</th>
+                <th scope="col">CNPJ</th>
+                <th scope="col">Atv. Economica</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Ativa</th>
             </tr>
-        }
+        </thead>
+        <tbody>
 
-    </tbody>
-</table>
+            @foreach (EmpresaDTO empresa in Model)
+            {
+                <tr>
+                    <th scope="row">@empresa.RazaoSocial</th>
+                    <td>@empresa.NumeroEmpregados</td>
+                    <td>@empresa.CNAE</td>
+                    <td>@empresa.Data_Cadastro</td>
+                    <td>@empresa.Observacao</td>
+                    <td>@empresa.CNPJ</td>
+                    <td>@empresa.Endereco</td>
+                    <td>@empresa.Complemento</td>
+                    <td>@empresa.Bairro</td>
+                    <td>@empresa.CEP</td>
+                    <td>@empresa.CNPJ</td>
+                    <td>@empresa.Atividade_Economica</td>
+                    <td>@empresa.Cidade</td>
+                    <td>
+                        @if (empresa.Ativa)
+                        {
+                            <img src="~/Content/Images/checked.png" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/nonChecked.png" />
+                        }
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
+
+
+<script>
+    async function loadFormEmpresa() {
+        const urlFormulario = '/Empresa/Criar';
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModal').innerHTML = parsedResponse;
+    }
+    function submitFormEmpresa() {
+        const form = document.getElementById('formEmpresa');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = ValidateEmpresa();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+</script>

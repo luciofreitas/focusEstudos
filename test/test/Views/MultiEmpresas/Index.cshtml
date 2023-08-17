@@ -1,0 +1,190 @@
+﻿@using test.DTOs
+@model List<EmpregadosDTO>
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+<br />
+<div>
+    <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormMultiEmpresas()"><span class="glyphicon glyphicon-plus"></span> Cadastrar</button>
+</div>
+<div class="modal fade" id="cadastroModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Empregado</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModalMultiEmpresas">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => Validate()" onclick="submitFormMultiEmpresas()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edicaoModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edição de Empregado</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModalEdicaoMultiEmpresas">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateEditionMultiEmpresas()" onclick="submitFormEdicaoMultiEmpresas()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Atualizar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">RG/Passaporte</th>
+            <th scope="col">DataNascimento</th>
+            <th scope="col">DataUltimaASO</th>
+            <th scope="col">Setor</th>
+            <th scope="col">Secto</th>
+            <th scope="col">Função</th>
+            <th scope="col">Function</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Atv. Economica</th>
+            <th scope="col">Cidade</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Editar/Apagar</th>
+        </tr>
+    </thead>
+    <tbody id="corpoTabelaMultiEmpresaEmpregados">
+        @foreach (var dado in Model)
+        {
+            <tr data-empresa="@dado.Empresa" id="listaMultiEmpresasEmpregados">
+                <th scope="row">@dado.Nome</th>
+                <td>@dado.CPF</td>
+                <td>@dado.RG_Passaport</td>
+                <td>@dado.Data_Nascimento</td>
+                <td>@dado.Ultimo_ASO</td>
+                <td>@dado.Nome_Setor</td>
+                <td>@dado.Nome_Setor_Ingles</td>
+                <td>@dado.Nome_Funcao</td>
+                <td>@dado.Nome_Funcao_Ingles</td>
+                <td>@dado.Razao_Social</td>
+                <td>@dado.CNPJ</td>
+                <td>@dado.Atividade_Economica</td>
+                <td>@dado.Cidade</td>
+                <td>@dado.Estado</td>
+                <td style="display: flex; justify-content: space-around;">
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoModal" onclick="loadFormEdicaoMultiEmpresas(@dado.ID)" id="btnConfirmar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteEmpregados(@dado.ID,'@dado.Nome')" id="btnConfirmar"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #fff;"></span></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    async function loadFormMultiEmpresas() {
+        const urlFormulario = '/MultiEmpresas/Criar';
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModalMultiEmpresas').innerHTML = parsedResponse;
+
+        var empresas = JSON.parse(localStorage['selectedEmpresas'])
+        if (empresas) {
+            var options = document.querySelectorAll('#selectedEmpresas option');
+            options.forEach(option => {
+                if (empresas.indexOf(option.value) == -1) {
+                    $(`#selectedEmpresas option[value='${option.value}'`).remove()
+                }
+            });
+        }
+    }
+    async function loadFormEdicaoMultiEmpresas(empregadoID) {
+        const urlFormulario = `/MultiEmpresas/Editar?id=${empregadoID}`;
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModalEdicaoMultiEmpresas').innerHTML = parsedResponse;
+
+        var empresas = JSON.parse(localStorage['selectedEdicaoMultiEmpresas'])
+        if (empresas) {
+            var options = document.querySelectorAll('#selectedEdicaoMultiEmpresas option');
+            options.forEach(option => {
+                if (empresas.indexOf(option.value) == -1) {
+                    $(`#selectedEdicaoMultiEmpresas option[value='${option.value}']`).remove()
+                }
+            });
+        }
+    }
+    function submitFormMultiEmpresas() {
+        const form = document.getElementById('formMultiEmpresas');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = Validate();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+    function submitFormEdicaoMultiEmpresas() {
+        const form = document.getElementById('formEdicaoMultiEmpresas');
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = ValidateEditionMultiEmpresas();
+        if (isValid) {
+            event.preventDefault();
+            var data = new FormData(form);
+            var object = {};
+            data.forEach((value, key) => object[key] = value);
+            var json = JSON.stringify(object)
+            $("btnConfirmar").prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/MultiEmpresas/Alterar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+    function btnDeleteEmpregados(empregadoID, empregadoNome) {
+        if (confirm(`Deseja realmente deletar o ${empregadoNome}?`))
+        {
+            var json = { empregadoID: empregadoID }
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: `/MultiEmpresas/Apagar`,
+                data: JSON.stringify(json),
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        }
+    }
+</script>
+

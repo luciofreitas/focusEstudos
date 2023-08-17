@@ -1,0 +1,78 @@
+﻿@using test.DTOs;
+@model EmpregadosDTO
+
+@{
+    ViewBag.Title = "Editar";
+}
+
+@using (Html.BeginForm("Alterar", "EmpregadosDTO", FormMethod.Post, new { @id = "formEdicao" }))
+{
+    <div>
+        <input type="hidden" name="ID" value="@Model.ID" />
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.CPF)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.CPF, new { @class = "input", required = "true", name = "CPF", value = Model.CPF, id = "cpf", onkeyup = "mascara('###.###.###-##',this,event,true)", maxlength = "14" })</div>
+                <div><span id="cpfAlertEdicao" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Empresa") </label>
+            <select id="selectedEmpresas" name="Empresa" class="input">
+                <option value=""></option>
+                @foreach (var empresa in ViewBag.Empresa)
+                {
+                    <option value="@empresa.ID" @Html.Raw(Model.Empresa == empresa.ID.ToString() ? "selected" : "")>@empresa.RazaoSocial</option>
+                }
+            </select>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Nome)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Nome, new { @class = "input", required = "true", name = "Nome", id = "nome" })</div>
+                <div><span id="nomeAlertEdicao" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.RG_Passaport)</label>
+            @Html.TextBoxFor(model => model.RG_Passaport, new { @class = "input", id = "rg-passaporte", onkeyup = "mascara('##.###.###-#',this,event,true)", maxlength = "12" })
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Data_Nascimento)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div> @Html.TextBox("Data_Nascimento", Model.Data_Nascimento.ToString("yyyy-MM-dd"), new { @class = "datepicker input", type = "date", required = "true", name = "Data_Nascimento", id = "data-nascimento" })</div>
+                <div><span id="dataNascAlertEdicao" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Ultimo_ASO)</label>
+            @Html.TextBox("Ultimo_ASO", Model.Ultimo_ASO.ToString("yyyy-MM-dd"), new { @class = "datepicker input", type = "date", id = "ultimo-aso" })
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Funcao")</label>
+            <select name="Nome_Funcao" class="input" id="funcao">
+                <option value="">@Model.Nome_Funcao</option>
+                @foreach (var funcao in ViewBag.Funcao)
+                {
+                    <option value="@funcao.Id" @Html.Raw(Model.Nome_Funcao == @funcao.Id.ToString() ? "selected" : "")>@funcao.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Setor")</label>
+            <select name="Nome_Setor" class="input" id="setor">
+                <option value=""></option>
+                @foreach (var setor in ViewBag.Setor)
+                {
+                    <option value="@setor.Id" @Html.Raw(Model.Nome_Setor == @setor.Id.ToString() ? "selected" : "")>@setor.Nome</option>
+                }
+            </select>
+        </div>
+    </div>
+}

@@ -1,0 +1,37 @@
+﻿@using test.Models
+@model AtividadeEconomicaModel
+@{
+    ViewBag.Title = "Criar";
+}
+
+@using (Html.BeginForm("Salvar", "AtividadeEconomica", FormMethod.Post, new { @id = "formAtividadeEconomica" }))
+{
+    <div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Codigo)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Codigo, new { @class = "input", id = "codigo" })</div>
+                <div><span id="codigoAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Nome)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Nome, new { @class = "input", id = "nome" })</div>
+                <div><span id="nomeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Ativa)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.CheckBoxFor(model => model.Ativa, new { @class = "input", id = "ativa" })</div>
+            </div>
+        </div>
+    </div>
+}

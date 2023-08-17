@@ -4,109 +4,145 @@
     ViewBag.Title = "Criar";
 }
 
-
-
-@using (Html.BeginForm("Salvar", "EmpregadosFullDTO", FormMethod.Post))
+@using (Html.BeginForm("Salvar", "EmpregadosFullDTO", FormMethod.Post, new { @id = "form" }))
 {
     <div>
-        <h2>Criar Empregado</h2>
-    </div>
-    <div>
-        @Html.LabelFor(model => model.CPF)
-        @Html.TextBoxFor(model => model.CPF)
-    </div>
-    <div class="mb-3">
-        @Html.Label("Empresa")
-        <select name="Empresa">
-            <option value=""> Selecione a Empresa</option>
-            @foreach (var empresa in ViewBag.Empresa)
-            {
-                <option value="@empresa.ID">@empresa.RazaoSocial</option>
-            }
-        </select>
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Nome)
-        @Html.TextBoxFor(model => model.Nome)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.RGPassaporte)
-        @Html.TextBoxFor(model => model.RGPassaporte)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.MatriculaESocial)
-        @Html.TextBoxFor(model => model.MatriculaESocial)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.NitPisPasep)
-        @Html.TextBoxFor(model => model.NitPisPasep)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.NomeMae)
-        @Html.TextBoxFor(model => model.NomeMae)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Nacionalidade)
-        @Html.TextBoxFor(model => model.Nacionalidade)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Data_Nascimento)
-        @Html.TextBox("Data_Nascimento", Model.Data_Nascimento, new { @class = "datepicker", @type = "date" })
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Ultimo_ASO)
-        @Html.TextBox("Ultimo_ASO", Model.Ultimo_ASO, new { @class = "datepicker", @type = "date" })
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Email)
-        @Html.TextBoxFor(model => model.Email)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Celular)
-        @Html.TextBoxFor(model => model.Celular)
-    </div>
-    <div class="mb-3">
-        @Html.Label("Sexo")
-        <select name="Sexo">
-            <option>Selecione seu sexo</option>
-            <option value="M">Masculino</option>
-            <option value="F">Feminino</option>
-        </select>
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.TipoSanguineo)
-        @Html.TextBoxFor(model => model.TipoSanguineo)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Cod_Categoria_eSocial)
-        @Html.TextBoxFor(model => model.Cod_Categoria_eSocial)
-    </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Ativo)
-        @Html.CheckBoxFor(model => model.Ativo, true)
-    </div>
-    <div class="mb-3">
-        @Html.Label("Funcao")
-        <select name="Funcao">
-            <option value=""> Selecione a Função</option>
-            @foreach (var funcao in ViewBag.Funcao)
-            {
-                <option value="@funcao.Id">@funcao.Nome</option>
-            }
-        </select>
-    </div>
-    <div class="mb-3">
-        @Html.Label("Setor")
-        <select name="Setor">
-            <option value=""> Selecione o Setor</option>
-            @foreach (var setor in ViewBag.Setor)
-            {
-                <option value="@setor.Id">@setor.Nome</option>
-            }
-        </select>
-    </div>
-    <div class="mb-3">
-        <button type="submit" class="btn btn-default">Cadastrar</button>
-        <button type="reset" class="btn btn-default">Cancelar</button>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.CPF)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.CPF, new { @class = "input", required = "true", name = "CPF", id = "cpf", onkeyup = "mascara('###.###.###-##',this,event,true)", maxlength = "14" })</div>
+                <div><span id="cpfAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Empresa") </label>
+            <select name="Empresa" class="input">
+                <option value=""></option>
+                @foreach (var empresa in ViewBag.Empresa)
+                {
+                    <option value="@empresa.ID">@empresa.RazaoSocial</option>
+                }
+            </select>
+            <div><span id="cpfAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Nome)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Nome, new { @class = "input", required = "true", name = "Nome", id = "nome" })</div>
+                <div><span id="nomeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.RGPassaporte)</label>
+            @Html.TextBoxFor(model => model.RGPassaporte, new { @class = "input", id = "rg-passaporte", onkeyup = "mascara('##.###.###-#',this,event,true)", maxlength = "12" })
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.MatriculaESocial)</label>
+            @Html.TextBoxFor(model => model.MatriculaESocial, new { @class = "input", id = "matricula-e-social" })
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.NitPisPasep)</label>
+            @Html.TextBoxFor(model => model.NitPisPasep, new { @class = "input", id = "nit-pis-pasep" })
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.NomeMae)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.NomeMae, new { @class = "input", required = "true", name = "nome-mae", id = "nome-mae" }) </div>
+                <div><span id="nomeMaeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.Nacionalidade) </label>
+            @Html.TextBoxFor(model => model.Nacionalidade, new { @class = "input", id = "nacionalidade" })
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Data_Nascimento) </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div> @Html.TextBox("Data_Nascimento", Model.Data_Nascimento, new { @class = "datepicker input", type = "date", required = "true", name = "Data_Nascimento", id = "data-nascimento" })</div>
+                <div><span id="dataNascAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Ultimo_ASO) </label>
+            @Html.TextBox("Ultimo_ASO", Model.Ultimo_ASO, new { @class = "datepicker input", type = "date", id = "ultimo-aso" })
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Email)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Email, new { @class = "input", type = "email", required = "true", name = "Email", id = "email" })</div>
+                <div>@Html.ValidationMessageFor(model => model.Email) </div>
+                <div><span id="emailAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">@Html.LabelFor(model => model.Celular)</label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>@Html.TextBoxFor(model => model.Celular, new { @class = "input", type = "phone", required = "true", name = "Celular", id = "celular", onkeyup = "mascara('(##)#####-####',this,event,true)", maxlength = "14" })</div>
+                <div><span id="celularAlert" class="text-danger size-text-danger"></span> </div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Sexo")</label>
+            <select name="Sexo" class="input" id="sexo">
+                <option></option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.TipoSanguineo)</label>
+            <select name="TipoSanguineo" class="input" id="tipo-sanguineo">
+                <option></option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Funcao")</label>
+            <select name="Funcao" class="input" id="funcao">
+                <option value=""></option>
+                @foreach (var funcao in ViewBag.Funcao)
+                {
+                    <option value="@funcao.Id">@funcao.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.Label("Setor")</label>
+            <select name="Setor" class="input" id="setor">
+                <option value=""></option>
+                @foreach (var setor in ViewBag.Setor)
+                {
+                    <option value="@setor.Id">@setor.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.Cod_Categoria_eSocial)</label>
+            @Html.TextBoxFor(model => model.Cod_Categoria_eSocial, new { @class = "input", id = "cod-categoria-e-social" })
+        </div>
+        <div class="div-form mb-3">
+            <label class="lb-class">@Html.LabelFor(model => model.Ativo)</label>
+            @Html.CheckBoxFor(model => model.Ativo, new { @class = "input", id = "ativo" })
+        </div>
     </div>
 }
