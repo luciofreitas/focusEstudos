@@ -76,7 +76,6 @@ C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\LightInject.Web.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.Owin.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\MiniProfiler.dll
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\MiniProfiler.Shared.dll
@@ -124,7 +123,6 @@ C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\LightInject.Web.pdb
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\LightInject.Web.xml
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.Extensions.DependencyInjection.Abstractions.xml
-C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Microsoft.Owin.xml
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\MiniProfiler.xml
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\MiniProfiler.Shared.xml
 C:\Users\Trabalho\Documents\focusEstudos\test\test\bin\Nest.pdb

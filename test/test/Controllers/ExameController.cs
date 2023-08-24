@@ -17,13 +17,14 @@ namespace test.Controllers
         }
         public PartialViewResult Criar()
         {
+            ViewBag.NomeExame = ExameService.ObterNomeExames();
             ViewBag.Empresa = EmpresaService.ObterEmpresa();
-            ExameDTO exame = new ExameDTO();
-            return PartialView(exame);
+            return PartialView();
         }
         [HttpPost]
         public ActionResult Salvar(ExameDTO exame)
         {
+ 
             ViewBag.Exame = ExameService.InserirExame(exame);
             return RedirectToAction("Index");
         }

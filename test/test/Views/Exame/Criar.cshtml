@@ -9,10 +9,16 @@
     <div>
         <div class="div-form mb-3">
             <div>
-                <label class="lb-class">@Html.LabelFor(model => model.Nome_Exame)</label>
+                <label for="nome-exame" class="lb-class">@Html.LabelFor(model => model.Nome_Exame)</label>
             </div>
             <div class="div-input-validatiton">
-                <div>@Html.TextBoxFor(model => model.Nome_Exame, new { @class = "input", required = "true", name = "Nome_Exame", id = "nome-exame" })</div>
+                <div>@Html.TextBoxFor(model => model.Nome_Exame, new { @class = "input", required = "true", name = "Nome_Exame", id = "nome-exame", @list = "nome-exame-lista" })</div>
+                <datalist id="nome-exame-lista">
+                    @foreach (var nome in ViewBag.NomeExame)
+                    {
+                        <option value="">@nome.Nome_Exame</option>
+                    }
+                </datalist>
                 <div><span id="nomeExameAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
@@ -121,19 +127,15 @@
                 </div>
                 <div class="container-tipo-aso">
                     <b>Tipo de exame</b>
-                    <div class="checkbox" >
-                        <label for="tipo-laboratorial" >
-                            @*@Html.RadioButtonFor(model => model.Tipo, 1, new { @class = "input", id = "tipo-laboratorial", name = "tipo", value = 1 })*@
-                           @* @Html.CheckBoxFor(model => model.Tipo, new { @class = "input", @id = "tipo-laboratorial", @onclick = "unSelectOption('tipo-imagem')", @checked = "checked", @readonly = "readonly" })*@
+                    <div class="checkbox">
+                        <label for="tipo-laboratorial">
                             @Html.CheckBox(" ", new { @class = "input", @id = "tipo-laboratorial", @onclick = "unSelectOption('tipo-imagem')", @checked = "checked", @readonly = "readonly" })
                             Exame Laboratorial
                         </label>
                     </div>
-                    <div class="checkbox" >
+                    <div class="checkbox">
                         <label for="tipo-imagem">
-                            @*@Html.RadioButtonFor(model => model.Tipo, 2, new { @class = "input", id = "tipo-imagem", name = "tipo", value = 2 })*@
-                            <input type="hidden" name="Tipo" value="true" id="tipo"/>
-                         @*   @Html.CheckBoxFor(model => model.Tipo, new { @class = "input", @id = "tipo-imagem", @onclick = "unSelectOption('tipo-laboratorial')", @readonly = "readonly" })*@
+                            <input type="hidden" name="Tipo" value="true" id="tipo" />
                             @Html.CheckBox(" ", new { @class = "input", @id = "tipo-imagem", @onclick = "unSelectOption('tipo-laboratorial')", @readonly = "readonly" })
                             Exame de Imagem
                         </label>

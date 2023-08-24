@@ -51,6 +51,35 @@ namespace test.Services
             }
             return list;
         }
+        public static List<ExameDTO> ObterNomeExames()
+        {
+            string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
+
+            List<ExameDTO> list = new List<ExameDTO>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT ID, Nome_Exame FROM Exames";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ExameDTO exame = new ExameDTO();
+                            exame.ID = int.Parse(reader["ID"].ToString());
+                            exame.Nome_Exame = reader["Nome_Exame"].ToString();
+
+                            list.Add(exame);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
         public static ExameDTO ObterExame(int id)
         {
             string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
