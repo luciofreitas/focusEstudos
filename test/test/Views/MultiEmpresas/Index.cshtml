@@ -156,6 +156,7 @@
             data.forEach((value, key) => object[key] = value);
             var json = JSON.stringify(object)
             $("btnConfirmar").prop("disabled", true);
+            $("btnApagar").prop("disabled", true);
             $.ajax({
                 type: "POST",
                 contentType: "application/json",

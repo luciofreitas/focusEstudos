@@ -1,14 +1,19 @@
-﻿.input {
+﻿
+* {
+    margin: 0;
+    padding: 0;
+}
+/* Estilo para campos desativados */
+input:disabled,
+select:disabled {
+    background-color: #eee9f7;
+}
+
+.input {
     border-radius: 2px;
     border: 1px solid #e5e5e5;
     opacity: 1;
     line-height: 20px;
-}
-.input,
-.lb-class {
-    margin: 0;
-    padding: 0;
-    margin-bottom: 5px;
 }
 
 .div-form {
@@ -16,18 +21,28 @@
     flex-direction: row;
     align-items: flex-start;
 }
+
 .div-input-validatiton {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .lb-class {
     width: 200px;
     text-align: right;
     margin-right: 10px;
 }
 
-.btn-atualizar{
+.lb-class-cb {
+    width: 200px;
+    text-align: left;
+    margin-left: 5px;
+    margin-right: 10px;
+    font-weight: normal;
+}
+
+.btn-atualizar {
     color: white;
     background-color: orange;
 }
@@ -44,43 +59,103 @@
     width: 30px;
     height: 31px;
 }
+
 .size-text-danger {
     font-size: 10px !important;
 }
-.modal-content{
+
+.modal-content {
     width: 530px !important;
 }
 
-.multiselect {
-    width: 200px;
+.divBtnExcelInserir {
+    width: 230px;
+    display: flex;
+    padding: 12px !important;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
-.selectBox {
-    position: relative;
+.btnExcel, .btnInserir {
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 0.5px;
 }
 
-    .selectBox select {
-        width: 100%;
-        font-weight: bold;
+.container-cb-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.check-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.container-sexo {
+    width: 220px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #cecece;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+    .container-sexo .checkbox {
+        padding: 5px;
     }
 
-.overSelect {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
+.container-tipo-aso {
+    width: 220px;
+    padding: 10px;
+    border: 1px solid #cecece;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-#checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-    #checkboxes label {
-        display: block;
+    .container-tipo-aso .checkbox {
+        padding: 5px;
     }
 
-        #checkboxes label:hover {
-            background-color: #1e90ff;
-        }
+
+.container-ficha-aso-ativo {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #cecece;
+    border-radius: 6px;
+    align-items: center;
+}
+
+    .container-ficha-aso-ativo .checkbox {
+        display: flex;
+        padding: 5px;
+        margin-top: 5px !important;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+    }
+
+.container-parametro-normalidade {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cecece;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.div-parametro-normalidade {
+    display: flex;
+    flex-direction: row;
+}
+
+#parametro-normalidade {
+    margin-left: 5px;
+}

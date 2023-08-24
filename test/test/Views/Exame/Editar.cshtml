@@ -1,0 +1,166 @@
+﻿@using test.DTOs;
+@model ExameDTO
+@{
+    ViewBag.Title = "Edicao";
+}
+
+@using (Html.BeginForm("Alterar", "Exame", FormMethod.Post, new { @id = "formEdicaoExame" }))
+{
+<div>
+    <input type="hidden" name="ID" value="@Model.ID" />
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Nome_Exame)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.Nome_Exame, new { @class = "input", required = "true", name = "Nome_Exame", id = "nome-exame-edicao" })</div>
+            <div><span id="nomeExameEdicaoAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Nome_Exame_Ingles)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.Nome_Exame_Ingles, new { @class = "input", required = "true", name = "Nome_Exame_Ingles", id = "nome-exame-ingles-edicao" })</div>
+            <div><span id="nomeExameInglesEdicaoAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Nome_Laboratorial)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.Nome_Laboratorial, new { @class = "input", required = "true", name = "Nome_Laboratorial", id = "nome-laboratorial" })</div>
+            <div><span id="nomeLaboratorialAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.MNE_Solicitacao)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.MNE_Solicitacao, new { @class = "input", required = "true", name = "MNE_Socilitacao", id = "mne-solicitacao" })</div>
+            <div><span id="mneSolicitacaoAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Tipo_Resultado)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <select name="" class="input" style="width: 177.27px; height:21.82px;" disabled>
+                <option value=""></option>
+                @foreach (var item in ViewBag.Empresa)
+                {
+                    <option value=""></option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Exame_Custo)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <select name="" class="input" style="width: 177.27px; height: 21.82px;" disabled>
+                <option value=""></option>
+                @foreach (var item in ViewBag.Empresa)
+                {
+                    <option value=""></option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Cod_Categoria_eSocial)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.Cod_Categoria_eSocial, new { @class = "input", required = "true", name = "Cod_Categoria_eSocial", id = "cod-categorial-esocial-exame" })</div>
+            <div><span id="codCategorialESocialAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="div-form mb-3">
+        <div>
+            <label class="lb-class">@Html.LabelFor(model => model.Unidade_Medida)</label>
+        </div>
+        <div class="div-input-validatiton">
+            <div>@Html.TextBoxFor(model => model.Unidade_Medida, new { @class = "input", required = "true", name = "Unidade_Medida", id = "unidade-medida" })</div>
+            <div><span id="unidadeMedidaAlert" class="text-danger size-text-danger"></span></div>
+        </div>
+    </div>
+    <div class="container-parametro-normalidade">
+        <b>Parâmetros de Normalidade</b>
+        <div class="div-parametro-normalidade">
+            <select name="" class="input" style="width:30%;" disabled>
+                <option value=""></option>
+                @foreach (var item in ViewBag.Empresa)
+                {
+                    <option value=""></option>
+                }
+            </select>
+            <div>@Html.TextBoxFor(model => model.Parametro_Normalidade, new { @class = "input", required = "true", name = "Parametro_Normalidade", id = "parametro-normalidade", disabled = "" })</div>
+        </div>
+    </div>
+    <div class="container-cb-main">
+        <div class="check-container">
+            <div class="container-sexo">
+                <b>Sexo</b>
+                <div class="checkbox">
+                    <label for="masculino">
+                        @Html.CheckBoxFor(model => model.Masculino, new { @class = "input", id = "masculino", name = "Masculino" })
+                        Masculino
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="feminino">
+                        @Html.CheckBoxFor(model => model.Feminino, new { @class = "input", id = "feminino", name = "Feminino" })
+                        Feminino
+                    </label>
+                </div>
+            </div>
+            <div class="container-tipo-aso">
+                <b>Tipo de exame</b>
+                <div class="checkbox">
+                    <label for="tipo-laboratorial">
+                        @*@Html.RadioButtonFor(model => model.Tipo, 1, new { @class = "input", id = "tipo-laboratorial", name = "tipo", value = 1 })*@
+                        @* @Html.CheckBoxFor(model => model.Tipo, new { @class = "input", @id = "tipo-laboratorial", @onclick = "unSelectOption('tipo-imagem')", @checked = "checked", @readonly = "readonly" })*@
+                        @Html.CheckBox(" ", new { @class = "input", @id = "tipo-laboratorial", @onclick = "unSelectOption('tipo-imagem')", @checked = "checked", @readonly = "readonly" })
+                        Exame Laboratorial
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label for="tipo-imagem">
+                        @*@Html.RadioButtonFor(model => model.Tipo, 2, new { @class = "input", id = "tipo-imagem", name = "tipo", value = 2 })*@
+                        <input type="hidden" name="Tipo" value="true" id="tipo" />
+                        @*   @Html.CheckBoxFor(model => model.Tipo, new { @class = "input", @id = "tipo-imagem", @onclick = "unSelectOption('tipo-laboratorial')", @readonly = "readonly" })*@
+                        @Html.CheckBox(" ", new { @class = "input", @id = "tipo-imagem", @onclick = "unSelectOption('tipo-laboratorial')", @readonly = "readonly" })
+                        Exame de Imagem
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="container-ficha-aso-ativo">
+            <div class="checkbox">
+                <label for="exibficha">
+                    @Html.CheckBoxFor(model => model.ExibFicha, new { @class = "input", id = "exibficha" })
+                    Exibir Ficha
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="exibaso">
+                    @Html.CheckBoxFor(model => model.ExibASO, new { @class = "input", id = "exibaso" })
+                    Exibir ASO
+                </label>
+            </div>
+            <div class="checkbox">
+                <label for="ativo-exame">
+                    @Html.CheckBoxFor(model => model.Ativo, new { @class = "input", id = "ativo-exame" })
+                    Ativo
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+}

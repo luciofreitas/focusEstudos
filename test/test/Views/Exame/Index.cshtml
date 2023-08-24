@@ -1,0 +1,237 @@
+﻿@using test.DTOs
+@model List<ExameDTO>
+@{
+    ViewBag.Title = "Exames";
+}
+
+<h2>Exames</h2>
+<br />
+<div class="divBtnExcelInserir">
+    <button type="submit" class="btnExcel"><span class="glyphicon glyphicon-file" aria-hidden="true" style="color: #000000;"></span> Exportar para Excel</button>
+    <button type="submit" class="btnInserir" data-toggle="modal" data-target="#cadastroModalExame" onclick="loadFormExame()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #000000;"></span> Inserir</button>
+</div>
+<div class="modal fade" id="cadastroModalExame" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cadastro de Exame</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModalExame">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" data-toggle="modal" data-target="#cadastroModalExame" onsubmit="() => ValidateExame()" onclick="submitFormExame()" id="btnCadastrarExame"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="edicaoExameModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edição de Exame</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="bodyModalEdicaoExame">
+
+            </div>
+            <div class="modal-footer mb-3">
+                <button type="submit" class="btn btn-atualizar" data-toggle="modal" data-target="#cadastroModalEdicaoExame" onsubmit="() => ValidateEditionExame()" onclick="submitFormEdicaoExame()" id="btnCadastrarEdicaoExame"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Confirmar</button>
+                <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div>
+    <p>Arraste aqui o cabeçalho de uma coluna para agrupar por esta coluna</p>
+</div>
+<br />
+<form method="get">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Nome em Inglês</th>
+                <th scope="col">Nome Laboratorial</th>
+                <th scope="col">Codigo eSocial</th>
+                <th scope="col">Unidade Medida</th>
+                <th scope="col">MNE Solicitação</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Masculino</th>
+                <th scope="col">Feminino</th>
+                <th scope="col">Exib.Ficha</th>
+                <th scope="col">Exib.ASO</th>
+                <th scope="col">Ativo</th>
+                <th scope="col"> Editar/Apagar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (ExameDTO exame in Model)
+                {
+                    <tr class="item-table">
+                        <td>@exame.Nome_Exame</td>
+                        <td>@exame.Nome_Exame_Ingles</td>
+                        <td>@exame.Nome_Laboratorial</td>
+                        <td>@exame.Cod_Categoria_eSocial</td>
+                        <td>@exame.Unidade_Medida</td>
+                        <td>@exame.MNE_Solicitacao</td>
+                        <td>
+                            @if (exame.Tipo)
+                            {
+                                <img src="~/Content/Images/flask.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/picture.png" />
+                            }
+                        </td>
+                        <td>
+                            @if (exame.Masculino)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+                        </td>
+                        <td>
+                            @if (exame.Feminino)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+                        </td>
+                        <td>
+                            @if (exame.ExibFicha)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+                        </td>
+                        <td>
+                            @if (exame.ExibASO)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+                        </td>
+                        <td>
+                            @if (exame.Ativo)
+                            {
+                                <img src="~/Content/Images/checked.png" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/Images/nonChecked.png" />
+                            }
+                        </td>
+                        <td style="display: flex; justify-content: space-around;">
+                            <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoExameModal" onclick="loadFormEdicaoExame(@exame.ID)" id="btnEditarExame"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteExame(@exame.ID, '@exame.Nome_Exame')" id="btnApagarExame"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</form>
+<script>
+    async function loadFormExame() {
+        const urlFormulario = '/Exame/Criar';
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModalExame').innerHTML = parsedResponse;
+    }
+    async function loadFormEdicaoExame(exameID) {
+        const urlFormulario = `/Exame/Editar?id=${exameID}`;
+
+        let response = await fetch(urlFormulario);
+        let parsedResponse = await response.text();
+
+        document.getElementById('bodyModalEdicaoExame').innerHTML = parsedResponse;
+    }
+    function submitFormExame() {
+        const form = document.getElementById('formExame');
+
+        if (!form) {
+            console.error("Formulário não encontrado")
+            return;
+        }
+        var isValid = ValidateExame();
+        if (isValid) {
+            form.submit();
+        } else {
+            console.log("Formulario inválido! Verifique os campos");
+        }
+    }
+    function submitFormEdicaoExame() {
+        const form = document.getElementById('formEdicaoExame');
+        if (!form) {
+            console.error("Formulario não encontrado")
+            return;
+        }
+        var isValid = ValidateEditionExame();
+        if (isValid) {
+            event.preventDefault();
+            var data = new FormData(form);
+            var object = {};
+            data.forEach((value, key) => object[key] = value);
+            var json = JSON.stringify(object);
+            $("btnEditarExame").prop("disabled", true);
+            $("btnApagarExame").prop("disabled", true);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Exame/Alterar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        } else {
+            console.log("Formulario inválido! Verifique os campso");
+        }
+    }
+    function btnDeleteExame(exameID, exameNome) {
+        if (confirm(`Deseja realmente deletar o ${exameNome}?`)) {
+            var json = { exameID: exameID }
+            $.ajax({
+                type: "DELETE",
+                contentType: "application/json",
+                url: `/Exame/Apagar`,
+                data: JSON.stringify(json),
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
+        }
+    }
+    function unSelectOption(id) {
+        var elemento = document.getElementById(id);
+        var otherCheckbox = document.getElementById(id == 'tipo-laboratorial' ? 'tipo-imagem' : 'tipo-laboratorial');
+        var inputHidden = document.getElementById('tipo');
+
+        otherCheckbox.checked = true;
+        inputHidden.value = id == 'tipo-imagem';
+        elemento.checked = false;
+    }
+</script>

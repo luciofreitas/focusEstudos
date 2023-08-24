@@ -28,7 +28,7 @@ namespace test.Controllers
             return Json(empregados, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Editar(int id)
+        public PartialViewResult Editar(int id)
         {
             ViewBag.Empresa = EmpresaService.ObterEmpresa();
             ViewBag.Funcao = FuncaoService.ObterFuncoes();

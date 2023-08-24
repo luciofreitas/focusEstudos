@@ -241,6 +241,40 @@ function ValidateEditionMultiEmpresas() {
     }
     return isValid;
 }
+function ValidateExame() {
+    var Nome_Exame = document.getElementById("nome-exame").value;
+    var Nome_Exame_Ingles = document.getElementById("nome-exame-ingles").value;
+
+    var isValid = true;
+
+    if (Nome_Exame == null || Nome_Exame.trim() === "") {
+        document.getElementById("nomeExameAlert").innerHTML = 'O nome do exame é obrigatório';
+        isValid = false;
+    }
+
+    if (Nome_Exame_Ingles == "" || Nome_Exame_Ingles.trim() === "") {
+        document.getElementById("nomeExameInglesAlert").innerHTML = 'O nome é obrigatório';
+        isValid = false;
+    }
+    return isValid;
+}
+function ValidateEditionExame() {
+    var Nome_Exame = document.getElementById("nome-exame-edicao").value;
+    var Nome_Exame_Ingles = document.getElementById("nome-exame-ingles-edicao").value;
+
+    var isValid = true;
+
+    if (Nome_Exame == null || Nome_Exame.trim() === "") {
+        document.getElementById("nomeExameEdicaoAlert").innerHTML = 'O nome do exame é obrigatório';
+        isValid = false;
+    }
+
+    if (Nome_Exame_Ingles == "" || Nome_Exame_Ingles.trim() === "") {
+        document.getElementById("nomeExameInglesEdicaoAlert").innerHTML = 'The name is required';
+        isValid = false;
+    }
+    return isValid;
+}
 
 function validarNumero(input) {
 

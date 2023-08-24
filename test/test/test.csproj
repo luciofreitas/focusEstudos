@@ -244,15 +244,18 @@
     <Compile Include="Controllers\EmpregadosDTOController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\EstadoController.cs" />
+    <Compile Include="Controllers\ExameController.cs" />
     <Compile Include="Controllers\FuncaoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MultiEmpresasController.cs" />
     <Compile Include="Controllers\SetorController.cs" />
     <Compile Include="Data\Database.cs" />
+    <Compile Include="DbNullHelper.cs" />
     <Compile Include="DTOs\CidadeEstadoDTO.cs" />
     <Compile Include="DTOs\EmpregadosDTO.cs" />
     <Compile Include="DTOs\EmpregadosFullDTO.cs" />
     <Compile Include="DTOs\EmpresaDTO.cs" />
+    <Compile Include="DTOs\ExameDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +273,7 @@
     <Compile Include="Services\EmpresaSelecaoEmpregadoService.cs" />
     <Compile Include="Services\EmpresaService.cs" />
     <Compile Include="Services\EstadoService.cs" />
+    <Compile Include="Services\ExameService.cs" />
     <Compile Include="Services\FuncaoService.cs" />
     <Compile Include="Services\SetorService.cs" />
   </ItemGroup>
@@ -279,7 +283,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\checked.png" />
+    <Content Include="Content\Images\flask.png" />
     <Content Include="Content\Images\nonChecked.png" />
+    <Content Include="Content\Images\picture.png" />
     <Content Include="Content\select2.min.css" />
     <Content Include="Content\Style.css" />
     <Content Include="favicon.ico" />
@@ -288,6 +294,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -336,6 +343,9 @@
     <Content Include="Views\MultiEmpresas\Criar.cshtml" />
     <Content Include="Views\MultiEmpresas\Editar.cshtml" />
     <Content Include="Views\EmpregadosDTO\Editar.cshtml" />
+    <Content Include="Views\Exame\Index.cshtml" />
+    <Content Include="Views\Exame\Criar.cshtml" />
+    <Content Include="Views\Exame\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

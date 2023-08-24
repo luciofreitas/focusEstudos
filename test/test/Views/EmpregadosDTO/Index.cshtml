@@ -84,8 +84,8 @@
                 <td>@dado.Cidade</td>
                 <td>@dado.Estado</td>
                 <td style="display: flex; justify-content: space-around;">
-                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoModal" onclick="loadFormEdicao(@dado.ID)" id="btnConfirmarApagar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteEmpregados(@dado.ID,'@dado.Nome')" id="btnConfirmarApagar"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #fff;"></span></button>
+                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoModal" onclick="loadFormEdicao(@dado.ID)" id="btnConfirmar"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteEmpregados(@dado.ID,'@dado.Nome')" id="btnApagar"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #fff;"></span></button>
                 </td>
             </tr>
         }
@@ -137,7 +137,8 @@
             var object = {};
             data.forEach((value, key) => object[key] = value);
             var json = JSON.stringify(object);
-            $("btnConfirmarApagar").prop("disabled", true);
+            $("btnConfirmar").prop("disabled", true);
+            $("btnApagar").prop("disabled", true);
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
