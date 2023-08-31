@@ -142,7 +142,7 @@
                         </td>
                         <td style="display: flex; justify-content: space-around;">
                             <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#edicaoExameModal" onclick="loadFormEdicaoExame(@exame.ID)" id="btnEditarExame"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteExame(@exame.ID, '@exame.Nome_Exame')" id="btnApagarExame"><span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color: #fff;"></span></button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="btnDeleteExame(@exame.ID, '@exame.Nome_Exame')" id="btnApagarExame"><span class="glyphicon glyphicon-remove" aria-hidden="true" style="color: #fff;"></span></button>
                         </td>
                     </tr>
                 }
@@ -167,6 +167,20 @@
 
         document.getElementById('bodyModalEdicaoExame').innerHTML = parsedResponse;
     }
+    //function submitFormExame() {
+    //    const form = document.getElementById('formExame');
+
+    //    if (!form) {
+    //        console.error("Formulário não encontrado")
+    //        return;
+    //    }
+    //    var isValid = ValidateExame();
+    //    if (isValid) {
+    //        form.submit();
+    //    } else {
+    //        console.log("Formulario inválido! Verifique os campos");
+    //    }
+    //}
     function submitFormExame() {
         const form = document.getElementById('formExame');
 
@@ -176,13 +190,39 @@
         }
         var isValid = ValidateExame();
         if (isValid) {
-            form.submit();
+            const exame = {
+                Nome_Exame: document.getElementById('nome-exame').value,
+                Nome_Exame_Ingles: document.getElementById('nome-exame-ingles').value,
+                Nome_Laboratorial: document.getElementById('nome-laboratorial').value,
+                MNE_Solicitacao: document.getElementById('mne-solicitacao').value,
+                Exame_Custo: document.getElementById('exame-custo'),
+                Cod_Categoria_eSocial: document.getElementById('cod-categoria-esocial-exame').value,
+                Unidade_Medida: document.getElementById('unidade-medida').value,
+                Tipo: document.getElementById('tipo').value,
+                Masculino: document.getElementById('masculino').checked,
+                Feminino: document.getElementById('feminino').checked,
+                ExibFicha: document.getElementById('exibficha').checked,
+                ExibASO: document.getElementById('exibaso').checked,
+                Ativo: document.getElementById('ativo-exame').checked
+            };
+            const json = JSON.stringify(exame);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Exame/Salvar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }
     }
     function submitFormEdicaoExame() {
         const form = document.getElementById('formEdicaoExame');
+
         if (!form) {
             console.error("Formulario não encontrado")
             return;
@@ -190,10 +230,24 @@
         var isValid = ValidateEditionExame();
         if (isValid) {
             event.preventDefault();
-            var data = new FormData(form);
-            var object = {};
-            data.forEach((value, key) => object[key] = value);
-            var json = JSON.stringify(object);
+            const exame = {
+                ID: document.getElementById('id-exame-edicao').value,
+                Nome_Exame: document.getElementById('nome-exame-edicao').value,
+                Nome_Exame_Ingles: document.getElementById('nome-exame-ingles-edicao').value,
+                Nome_Laboratorial: document.getElementById('nome-laboratorial-edicao').value,
+                MNE_Solicitacao: document.getElementById('mne-solicitacao-edicao').value,
+                //Tipo_Resultado: document.getElementById('tipo-resultado-edicao'),
+                Cod_Categoria_eSocial: document.getElementById('cod-categoria-esocial-exame-edicao').value,
+                Unidade_Medida: document.getElementById('unidade-medida-edicao').value,
+                //Parametro_Normalidade: document.getElementById('parametro-normalidade-edicao'),
+                Tipo: document.getElementById('tipo-edicao').value,
+                Masculino: document.getElementById('masculino-edicao').checked,
+                Feminino: document.getElementById('feminino-edicao').checked,
+                ExibFicha: document.getElementById('exibficha-edicao').checked,
+                ExibASO: document.getElementById('exibaso-edicao').checked,
+                Ativo: document.getElementById('ativo-exame-edicao').checked
+            };
+            const json = JSON.stringify(exame);
             $("btnEditarExame").prop("disabled", true);
             $("btnApagarExame").prop("disabled", true);
             $.ajax({
@@ -207,9 +261,10 @@
             });
             setTimeout(() => window.location.reload(), 500);
         } else {
-            console.log("Formulario inválido! Verifique os campso");
+            console.log("Formulario inválido! Verifique os campos");
         }
     }
+
     function btnDeleteExame(exameID, exameNome) {
         if (confirm(`Deseja realmente deletar o ${exameNome}?`)) {
             var json = { exameID: exameID }
@@ -234,5 +289,29 @@
         inputHidden.value = id == 'tipo-imagem';
         elemento.checked = false;
     }
+    function unSelectOptionEdition(id) {
+        var elemento = document.getElementById(id);
+        var otherCheckbox = document.getElementById(id == 'tipo-laboratorial-edicao' ? 'tipo-imagem-edicao' : 'tipo-laboratorial-edicao');
+        var inputHidden = document.getElementById('tipo-edicao');
 
+        otherCheckbox.checked = true;
+        inputHidden.value = id == 'tipo-imagem-edicao';
+        elemento.checked = false;
+    }
+    function onBlurExame(event) {
+            ChecarNomeExames(event.target);
+    }
+    function ChecarNomeExames(elemento) {
+        var value = elemento.value.trim().toLowerCase();
+        const nomesExistentes = Array.from(document.querySelectorAll("#nome-exame-lista option")).map(option => option.value.trim().toLowerCase());
+
+        if (nomesExistentes.indexOf(value) > -1) {
+            document.getElementById('btnCadastrarExame').disabled = true;
+            document.getElementById('nomeExameAlert').innerHTML = "Exame já existente.";
+            
+        } else {
+            document.getElementById('btnCadastrarExame').disabled = false;
+            document.getElementById('nomeExameAlert').innerHTML = "";
+        }
+    }
 </script>

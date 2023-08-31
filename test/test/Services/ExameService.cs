@@ -51,17 +51,48 @@ namespace test.Services
             }
             return list;
         }
-        public static List<ExameDTO> ObterNomeExames()
+        //public static List<Exame_TabeladoDTO> NomeExameTabelado()
+        //{
+        //    string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
+
+        //    List<Exame_TabeladoDTO> list = new List<Exame_TabeladoDTO>();
+
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+
+        //        string sql = "sp_exameTabelado";
+
+        //        using (SqlCommand command = new SqlCommand(sql, connection))
+        //        {
+        //            using (SqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                while (reader.Read())
+        //                {
+        //                    Exame_TabeladoDTO exameTabelado = new Exame_TabeladoDTO();
+        //                    exameTabelado.NomeExame_ExameTabelado = reader["Nome"].ToString();
+        //                    //exameTabelado.Empresa_ExameTabelado = reader["Empresa_ID_ExameTabelado"].ToString();
+        //                    //exameTabelado.Valor_ExameTabelado = float.Parse(reader["Valor_ExameTabelado"].ToString());
+
+        //                    list.Add(exameTabelado);
+        //                }
+        //            }
+        //        }
+        //    }
+        //    return list;
+        //}
+        public static List<string> NomeExameTabelado()
         {
             string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
 
-            List<ExameDTO> list = new List<ExameDTO>();
+            List<string> list = new List<string>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string sql = "SELECT ID, Nome_Exame FROM Exames";
+                //string sql = "SELECT NomeExameID_ExameTabelado FROM ExameTabelado";
+                string sql = "SELECT Nome_Exame FROM Exames";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -69,11 +100,38 @@ namespace test.Services
                     {
                         while (reader.Read())
                         {
-                            ExameDTO exame = new ExameDTO();
-                            exame.ID = int.Parse(reader["ID"].ToString());
-                            exame.Nome_Exame = reader["Nome_Exame"].ToString();
 
-                            list.Add(exame);
+                            //string nomeExameTabelado = reader["NomeExameID_ExameTabelado"].ToString();
+                            string nomeExameTabelado = reader["Nome_Exame"].ToString();
+
+                            list.Add(nomeExameTabelado);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+        public static List<string> ObterNomeExames()
+        {
+            string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
+
+            List<string> list = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "SELECT Nome_Exame FROM Exames";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string nome_Exame = reader["Nome_Exame"].ToString();
+
+                            list.Add(nome_Exame);
                         }
                     }
                 }
@@ -123,25 +181,25 @@ namespace test.Services
             {
                 connection.Open();
 
-                string sql = @"INSERT INTO Exames (Nome_Exame, Nome_Exame_Ingles, Masculino, Feminino, Tipo, Exib_Ficha, Exib_ASO, Ativo, Nome_Laboratorial, Cod_ESocial, Unidade_Medida, MNE_Solicitacao)
-                               VALUES(@Nome_Exame, @Nome_Exame_Ingles, @Masculino, @Feminino, @Tipo, @Exib_Ficha, @Exib_ASO, @Ativo, @Nome_Laboratorial, @Cod_ESocial, @Unidade_Medida, @MNE_Solicitacao)";
+                string sql = @"INSERT INTO Exames (Nome_Exame, Nome_Exame_Ingles, Masculino, Feminino, Tipo, Exib_Ficha, Exib_ASO, Ativo, Nome_Laboratorial, Exame_Custo ,Cod_ESocial, Unidade_Medida, MNE_Solicitacao)
+                               VALUES(@Nome_Exame, @Nome_Exame_Ingles, @Masculino, @Feminino, @Tipo, @Exib_Ficha, @Exib_ASO, @Ativo, @Nome_Laboratorial,@Exame_Custo, @Cod_ESocial, @Unidade_Medida, @MNE_Solicitacao)";
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.AddWithValue("@Nome_Exame", DbNullHelper.CheckNullity(exame.Nome_Exame));
-                    command.Parameters.AddWithValue("@Nome_Exame_Ingles", DbNullHelper.CheckNullity(exame.Nome_Exame_Ingles));
-                    command.Parameters.AddWithValue("@Tipo", DbNullHelper.CheckNullity(exame.Tipo));
-                    command.Parameters.AddWithValue("@Masculino", DbNullHelper.CheckNullity(exame.Masculino));
-                    command.Parameters.AddWithValue("@Feminino", DbNullHelper.CheckNullity(exame.Feminino));
-                    command.Parameters.AddWithValue("@Exib_Ficha", DbNullHelper.CheckNullity(exame.ExibFicha));
-                    command.Parameters.AddWithValue("@Exib_ASO", DbNullHelper.CheckNullity(exame.ExibASO));
-                    command.Parameters.AddWithValue("@Ativo", DbNullHelper.CheckNullity(exame.Ativo));
-                    command.Parameters.AddWithValue("@Nome_Laboratorial", DbNullHelper.CheckNullity(exame.Nome_Laboratorial));
-                    command.Parameters.AddWithValue("@Cod_ESocial", DbNullHelper.CheckNullity(exame.Cod_Categoria_eSocial));
-                    command.Parameters.AddWithValue("@Unidade_Medida", DbNullHelper.CheckNullity(exame.Unidade_Medida));
-                    command.Parameters.AddWithValue("@MNE_Solicitacao", DbNullHelper.CheckNullity(exame.MNE_Solicitacao));
+                        command.Parameters.AddWithValue("@Nome_Exame", DbNullHelper.CheckNullity(exame.Nome_Exame));
+                        command.Parameters.AddWithValue("@Nome_Exame_Ingles", DbNullHelper.CheckNullity(exame.Nome_Exame_Ingles));
+                        command.Parameters.AddWithValue("@Tipo", DbNullHelper.CheckNullity(exame.Tipo));
+                        command.Parameters.AddWithValue("@Masculino", DbNullHelper.CheckNullity(exame.Masculino));
+                        command.Parameters.AddWithValue("@Feminino", DbNullHelper.CheckNullity(exame.Feminino));
+                        command.Parameters.AddWithValue("@Exib_Ficha", DbNullHelper.CheckNullity(exame.ExibFicha));
+                        command.Parameters.AddWithValue("@Exib_ASO", DbNullHelper.CheckNullity(exame.ExibASO));
+                        command.Parameters.AddWithValue("@Ativo", DbNullHelper.CheckNullity(exame.Ativo));
+                        command.Parameters.AddWithValue("@Nome_Laboratorial", DbNullHelper.CheckNullity(exame.Nome_Laboratorial));
+                        command.Parameters.AddWithValue("@Exame_Custo", DbNullHelper.CheckNullity(exame.Exame_Custo));
+                        command.Parameters.AddWithValue("@Cod_ESocial", DbNullHelper.CheckNullity(exame.Cod_Categoria_eSocial));
+                        command.Parameters.AddWithValue("@Unidade_Medida", DbNullHelper.CheckNullity(exame.Unidade_Medida));
+                        command.Parameters.AddWithValue("@MNE_Solicitacao", DbNullHelper.CheckNullity(exame.MNE_Solicitacao));
 
-
-                    command.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                 }
                 connection.Close();
             }

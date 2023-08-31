@@ -256,6 +256,7 @@
     <Compile Include="DTOs\EmpregadosFullDTO.cs" />
     <Compile Include="DTOs\EmpresaDTO.cs" />
     <Compile Include="DTOs\ExameDTO.cs" />
+    <Compile Include="DTOs\Exame_TabeladoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

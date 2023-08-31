@@ -9,7 +9,6 @@ namespace test.Controllers
 {
     public class ExameController : Controller
     {
-        // GET: Exame
         public ActionResult Index()
         {
             var exames = ExameService.ObterExames();
@@ -17,14 +16,13 @@ namespace test.Controllers
         }
         public PartialViewResult Criar()
         {
+            ViewBag.NomeExameTabelado = ExameService.NomeExameTabelado();
             ViewBag.NomeExame = ExameService.ObterNomeExames();
-            ViewBag.Empresa = EmpresaService.ObterEmpresa();
             return PartialView();
         }
         [HttpPost]
         public ActionResult Salvar(ExameDTO exame)
         {
- 
             ViewBag.Exame = ExameService.InserirExame(exame);
             return RedirectToAction("Index");
         }

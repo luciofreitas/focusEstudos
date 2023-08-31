@@ -19,7 +19,7 @@ namespace test.DTOs
         public string MNE_Solicitacao { get; set; }
         [DisplayName("Tipo Resultado")]
         public string Tipo_Resultado { get; set; }
-        [DisplayName("Exame para Custo")]
+        [DisplayName("Custo do Exame")]
         public string Exame_Custo { get; set; }
         [DisplayName("Cod.eSocial")]
         public string Cod_Categoria_eSocial { get; set; }
