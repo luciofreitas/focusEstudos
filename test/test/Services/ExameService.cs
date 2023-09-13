@@ -51,36 +51,7 @@ namespace test.Services
             }
             return list;
         }
-        //public static List<Exame_TabeladoDTO> NomeExameTabelado()
-        //{
-        //    string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
 
-        //    List<Exame_TabeladoDTO> list = new List<Exame_TabeladoDTO>();
-
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-
-        //        string sql = "sp_exameTabelado";
-
-        //        using (SqlCommand command = new SqlCommand(sql, connection))
-        //        {
-        //            using (SqlDataReader reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    Exame_TabeladoDTO exameTabelado = new Exame_TabeladoDTO();
-        //                    exameTabelado.NomeExame_ExameTabelado = reader["Nome"].ToString();
-        //                    //exameTabelado.Empresa_ExameTabelado = reader["Empresa_ID_ExameTabelado"].ToString();
-        //                    //exameTabelado.Valor_ExameTabelado = float.Parse(reader["Valor_ExameTabelado"].ToString());
-
-        //                    list.Add(exameTabelado);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return list;
-        //}
         public static List<string> NomeExameTabelado()
         {
             string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";

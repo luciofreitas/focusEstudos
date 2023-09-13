@@ -2,6 +2,7 @@
 @model List<EmpregadosDTO>
 @{
     ViewBag.Title = "Index";
+    List<EmpregadosDTO> dados = ViewBag.ExibirEmpregados;
 }
 <br />
 <br />
@@ -17,7 +18,6 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" id="bodyModal">
-
             </div>
             <div class="modal-footer mb-3">
                 <button type="submit" class="btn btn-atualizar" onsubmit="() => Validate()" onclick="submitForm()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
@@ -66,21 +66,21 @@
         </tr>
     </thead>
     <tbody id="corpoTabelaEmpregados">
-        @foreach (var dado in Model)
+        @foreach (var dado in dados)
         {
             <tr data-empresa="@dado.Empresa" id="listaEmpregados">
-                <th scope="row">@dado.Nome</th>
+                <td scope="row">@dado.Nome</td>
                 <td>@dado.CPF</td>
-                <td>@dado.RG_Passaport</td>
-                <td>@dado.Data_Nascimento</td>
-                <td>@dado.Ultimo_ASO</td>
-                <td>@dado.Nome_Setor</td>
-                <td>@dado.Nome_Setor_Ingles</td>
-                <td>@dado.Nome_Funcao</td>
-                <td>@dado.Nome_Funcao_Ingles</td>
-                <td>@dado.Razao_Social</td>
+                <td>@dado.RGPassaporte</td>
+                <td>@dado.DataNascimento</td>
+                <td>@dado.UltimoASO</td>
+                <td>@dado.NomeSetor</td>
+                <td>@dado.NomeSetorIngles</td>
+                <td>@dado.NomeFuncao</td>
+                <td>@dado.NomeFuncaoIngles</td>
+                <td>@dado.RazaoSocial</td>
                 <td>@dado.CNPJ</td>
-                <td>@dado.Atividade_Economica</td>
+                <td>@dado.AtividadeEconomica</td>
                 <td>@dado.Cidade</td>
                 <td>@dado.Estado</td>
                 <td style="display: flex; justify-content: space-around;">
@@ -94,7 +94,7 @@
 
 <script>
     async function loadForm() {
-        const urlFormulario = '/EmpregadosFullDTO/Criar';
+        const urlFormulario = '/EmpregadosDTO/Criar';
 
         let response = await fetch(urlFormulario);
         let parsedResponse = await response.text();
@@ -108,8 +108,32 @@
         let parsedResponse = await response.text();
 
         document.getElementById('bodyModalEdicao').innerHTML = parsedResponse;
-        
+
     }
+    const apiURL = 'https://servicodados.ibge.gov.br/api/v1/localidades/municipios';
+    async function getCidade() {
+        const selectCidade = document.getElementById('cidade');
+        try {
+            const response = await fetch(apiURL);
+
+            if (response.ok) {
+                const cidades = await response.json();
+
+                cidades.forEach((cidade) => {
+                    const option = document.createElement('option');
+                    option.value = cidade.Nome;
+                    option.text = cidade.nome;
+                    selectCidade.appendChild(option);
+                });
+
+            } else {
+                console.error('Erro ao buscar cidades:', response.status, response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro na solicitação:', error);
+        }
+    }
+    window.addEventListener('load', getCidade);
     function submitForm() {
         const form = document.getElementById('form');
 
@@ -119,7 +143,38 @@
         }
         var isValid = Validate();
         if (isValid) {
-            form.submit();
+            const empregados = {
+                CPF: document.getElementById('cpf').value,
+                Empresa: document.getElementById('selected').value,
+                Nome: document.getElementById('nome').value,
+                RGPassaporte: document.getElementById('rg-passaporte').value,
+                MatriculaESocial: document.getElementById('matricula-e-social').value,
+                NitPisPasep: document.getElementById('nit-pis-pasep').value,
+                NomeMae: document.getElementById('nome-mae').value,
+                Nacionalidade: document.getElementById('nacionalidade').value,
+                DataNascimento: document.getElementById('data-nascimento').value,
+                UltimoASO: document.getElementById('ultimo-aso').value,
+                Email: document.getElementById('email').value,
+                Celular: document.getElementById('celular').value,
+                Sexo: document.getElementById('sexo').value,
+                TipoSanguineo: document.getElementById('tipo-sanguineo').value,
+                NomeFuncao: document.getElementById('funcao').value,
+                NomeSetor: document.getElementById('setor').value,
+                CodCategoriaeSocial: document.getElementById('cod-categoria-e-social').value,
+                Ativo: document.getElementById('ativo').checked
+
+            };
+            const json = JSON.stringify(empregados);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/MultiEmpresas/Salvar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }
@@ -133,10 +188,18 @@
         var isValid = ValidateEdition();
         if (isValid) {
             event.preventDefault();
-            var data = new FormData(form);
-            var object = {};
-            data.forEach((value, key) => object[key] = value);
-            var json = JSON.stringify(object);
+            const empregadosEdicaoME = {
+                ID: document.getElementById('id-edicao').value,
+                CPF: document.getElementById('cpf-edicao').value,
+                Empresa: document.getElementById('selected-edicao').value,
+                Nome: document.getElementById('nome-edicao').value,
+                RGPassaporte: document.getElementById('rg-passaporte-edicao').value,
+                DataNascimento: document.getElementById('data-nascimento-edicao').value,
+                UltimoASO: document.getElementById('ultimo-aso-edicao').value,
+                NomeFuncao: document.getElementById('funcao-edicao').value,
+                NomeSetor: document.getElementById('setor-edicao').value
+            };
+            const json = JSON.stringify(empregadosEdicaoME);
             $("btnConfirmar").prop("disabled", true);
             $("btnApagar").prop("disabled", true);
             $.ajax({
@@ -154,8 +217,7 @@
         }
     }
     function btnDeleteEmpregados(empregadoID, empregadoNome) {
-        if (confirm(`Deseja realmente deletar o ${empregadoNome}?`))
-        {
+        if (confirm(`Deseja realmente deletar o ${empregadoNome}?`)) {
             var json = { empregadoID: empregadoID }
             $.ajax({
                 type: "DELETE",

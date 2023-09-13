@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using test.Services;
+﻿using System.Web.Mvc;
 using test.DTOs;
-using Newtonsoft.Json;
+using test.Services;
 
 namespace test.Controllers
 {
@@ -34,14 +29,14 @@ namespace test.Controllers
             ViewBag.Empresa = EmpresaService.ObterEmpresa();
             ViewBag.Funcao = FuncaoService.ObterFuncoes();
             ViewBag.Setor = SetorService.ObterSetores();
-            EmpregadosFullDTO empregados = new EmpregadosFullDTO();
+            EmpregadosDTO empregados = new EmpregadosDTO();
             return PartialView(empregados);
         }
 
-        public ActionResult Salvar(EmpregadosFullDTO empregados)
+        public ActionResult Salvar(EmpregadosDTO empregados)
         {
             ViewBag.Empregado = EmpregadosService.InserirEmpregado(empregados);
-            return RedirectToAction("Index", "MultiEmpresas");
+            return RedirectToAction("Index");
         }
         public ActionResult Editar(int id)
         {

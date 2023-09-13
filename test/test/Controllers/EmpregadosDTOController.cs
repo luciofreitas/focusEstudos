@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using test.DTOs;
 using test.Services;
 
@@ -10,11 +6,10 @@ namespace test.Controllers
 {
     public class EmpregadosDTOController : Controller
     {
-        // GET: Empregados
         public ActionResult EmpresaSelecaoEmpregado(int? empresaID)
         {
-            var empregados = EmpregadosService.ObterEmpregados(empresaID);        
-            return View("Index", empregados);
+            ViewBag.ExibirEmpregados = EmpregadosService.ObterEmpregados(empresaID);        
+            return View("Index");
         }
         public ActionResult Index()
         {
@@ -27,7 +22,20 @@ namespace test.Controllers
             var empregados = EmpregadosService.ObterEmpregados(empresaID);
             return Json(empregados, JsonRequestBehavior.AllowGet);
         }
-
+        public PartialViewResult Criar()
+        {
+            ViewBag.Empresa = EmpresaService.ObterEmpresa();
+            ViewBag.Funcao = FuncaoService.ObterFuncoes();
+            ViewBag.Setor = SetorService.ObterSetores();
+            EmpregadosDTO empregados = new EmpregadosDTO();
+            return PartialView(empregados);
+        }
+        [HttpPost]
+        public ActionResult Salvar(EmpregadosDTO empregados)
+        {
+            ViewBag.Empregado = EmpregadosService.InserirEmpregado(empregados);
+            return RedirectToAction("Index", "EmpregadosDTO");
+        }
         public PartialViewResult Editar(int id)
         {
             ViewBag.Empresa = EmpresaService.ObterEmpresa();

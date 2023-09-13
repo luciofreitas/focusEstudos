@@ -20,7 +20,7 @@ namespace test.Services
             {
                 connection.Open();
 
-                string sql = "SELECT ID, Nome FROM Funcao";
+                string sql = "SELECT ID, Nome, Nome_Ingles, Ativa FROM Funcao";
 
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
@@ -32,11 +32,37 @@ namespace test.Services
 
                             funcao.Id = int.Parse(reader["ID"].ToString());
                             funcao.Nome = reader["Nome"].ToString();
+                            funcao.Nome_Ingles = reader["Nome_Ingles"].ToString();
+                            funcao.Ativo = bool.Parse(reader["Ativa"].ToString());
 
                             list.Add(funcao);
                         }
                     }
                 }
+            }
+            return list;
+        }
+        public static List<FuncaoModel> InserirFuncao(FuncaoModel funcao)
+        {
+            string connectionString = "Server=./;Database=FocusEmpregadosEmpresa;User Id=sa; Password=Lf261192@;Encrypt=True;TrustServerCertificate=True";
+
+            List<FuncaoModel> list = new List<FuncaoModel>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string sql = "INSERT INTO dbo.Funcao(Nome, Nome_Ingles,Ativa) VALUES(@Nome, @Nome_Ingles,@Ativa)";
+
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@Nome", funcao.Nome);
+                    command.Parameters.AddWithValue("@Nome_Ingles", funcao.Nome_Ingles);
+                    command.Parameters.AddWithValue("@Ativa", funcao.Ativo);
+
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
             }
             return list;
         }

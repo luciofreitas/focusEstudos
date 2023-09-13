@@ -3,129 +3,178 @@
 @{
     ViewBag.Title = "Criar";
 }
+<form action="/Empresa/Salvar" id="formEmpresa" method="post">
+    <div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Nome da Empresa
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="razao-social" name="RazaoSocial" />
+                </div>
+                <div><span id="razaoSocialAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Numero de Empregados
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="numero-empregados" name="NumeroEmpregados" onkeyup="validarNumero(this)" value=" " />
+                </div>
+                <div><span id="numeroEmpregadosAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    CNAE
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="cnae" name="name" />
+                </div>
+                <div><span id="cnaeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Data de Cadastro
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="date" class="input" id="data-cadastro" name="DataCadastro" />
+                </div>
+                <div><span id="dataCadastroAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Observação
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="observacao" name="Observacao" />
+                </div>
+                <div><span id="observacaoAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    CNPJ
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="cnpj" name="CNPJ" onkeyup="mascara('##.###.###/####-##',this,event,true)" maxlength="20" />
+                </div>
+                <div><span id="cnpjAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Endereço
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="endereco" name="Endereco" />
+                </div>
+                <div><span id="enderecoAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Complemento
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="complemento" name="Complemento" />
+                </div>
+                <div><span id="complementoAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Bairro
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="bairro" name="Bairro" />
+                </div>
+                <div><span id="bairroAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    CEP
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="cep" name="CEP" onkeyup="mascara('#####-###',this,event,true)" maxlength="9" />
+                </div>
+                <div><span id="cepAlert" class="text-danger size-text-danger"></span></div>
+            </div>
+        </div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Cidade
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <input type="text" id="cidade" name="Cidade" list="cidades"/>
+                <datalist  id="cidades">
 
-@using (Html.BeginForm("Salvar", "Empresa", FormMethod.Post, new { @id = "formEmpresa" }))
-{
-<div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.RazaoSocial)</label>
+                </datalist>
+                <div><span id="cidadeAlert" class="text-danger size-text-danger"></span></div>
+            </div>
         </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.RazaoSocial, new { @class = "input", id = "razao-social" }) </div>
-            <div><span id="razaoSocialAlert" class="text-danger size-text-danger"></span></div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Atividade Economica
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <input type="text" id="atividade-economica" name="AtividadeEconomica" list="atividades-economicas"/>
+                <datalist id="atividades-economicas">
+
+                </datalist>
+                <div><span id="atividadeEconomicaAlert" class="text-danger size-text-danger"></span></div>
+            </div>
         </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.NumeroEmpregados)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.NumeroEmpregados, new { @class = "input", type = "text", id = "numero-empregados", onkeyup = "validarNumero(this)", value = " " })</div>
-            <div><span id="numeroEmpregadosAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.CNAE)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.CNAE, new { @class = "input", id = "cnae" })</div>
-            <div><span id="cnaeAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.Data_Cadastro)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBox("Data_Cadastro", Model.Data_Cadastro, new { @class = "datepicker, input", @type = "date", id = "data-cadastro" })</div>
-            <div><span id="dataCadastroAlert" class="text-danger size-text-danger"></span></div>
+        <div class="div-form mb-3">
+            <div>
+                <label class="lb-class">
+                    Ativo
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="checkbox" class="input" id="ativo-empresa" name="Ativo" />
+                </div>
+            </div>
         </div>
     </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.Observacao)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.Observacao, new { @class = "input", id = "observacao" })</div>
-            <div><span id="observacaoAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.CNPJ)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div> @Html.TextBoxFor(model => model.CNPJ, new { @class = "input", id = "cnpj", onkeyup = "mascara('##.###.###/####-##',this,event,true)", maxlength = "20" })</div>
-            <div><span id="cnpjAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class"> @Html.LabelFor(model => model.Endereco)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.Endereco, new { @class = "input", id = "endereco" })</div>
-            <div><span id="enderecoAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.Complemento)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.Complemento, new { @class = "input", id = "complemento" })</div>
-            <div><span id="complementoAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.Bairro)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.Bairro, new { @class = "input", id = "bairro" })</div>
-            <div><span id="bairroAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.LabelFor(model => model.CEP)</label>
-        </div>
-        <div class="div-input-validatiton">
-            <div>@Html.TextBoxFor(model => model.CEP, new { @class = "input", id = "cep", onkeyup = "mascara('#####-###',this,event,true)", maxlength = "9" })</div>
-            <div><span id="cepAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.Label("Cidade")</label>
-        </div>
-        <div class="div-input-validatiton">
-            <select name="Cidade" class="input" id="cidade">
-                <option value=""></option>
-                @foreach (var cidade in ViewBag.Cidade)
-                {
-                    <option value="@cidade.ID">@cidade.Nome</option>
-                }
-            </select>
-            <div><span id="cidadeAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-    <div class="div-form mb-3">
-        <div>
-            <label class="lb-class">@Html.Label("AtividadeEconomica")</label>
-        </div>
-        <div class="div-input-validatiton">
-            <select name="Atividade_Economica" class="input" id="atividade-economica">
-                <option value=""></option>
-                @foreach (var ae in ViewBag.AtividadeEconomica)
-                {
-                    <option value="@ae.ID">@ae.Nome</option>
-                }
-            </select>
-            <div><span id="atividadeEconomicaAlert" class="text-danger size-text-danger"></span></div>
-        </div>
-    </div>
-</div>
-}
+</form>
+

@@ -19,19 +19,6 @@ namespace test.Data
         {
             using (SqlConnection con = new SqlConnection(sqlConn()))
             {
-                //EmpresaModel empresa = new EmpresaModel();
-                //EmpregadosModel empregado = new EmpregadosModel();
-
-                //con.Open();
-
-                //string updateEmpresa = "UPDATE Empresa SET AtividadeEconomica = @AtividadeEconomica, RazaoSocial = @RazaoSocial, Ativo = @Ativo";
-                //using (SqlCommand command = new SqlCommand(updateEmpresa, con))
-                
-                //{
-                //    command.Parameters.AddWithValue("@AtividadeEconomica", empresa.AtividadeEconomica);
-                //    command.Parameters.AddWithValue("@RazaoSocial", empresa.RazaoSocial);
-                //    command.Parameters.AddWithValue("@Ativo", empregado.Ativo);
-                //}
                 string spString = "";
                 SqlCommand command = new SqlCommand(spString, con);
 

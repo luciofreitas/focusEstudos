@@ -1,28 +1,13 @@
 ﻿@using test.DTOs
 @model List<EmpresaDTO>
 
-
 @{
     ViewBag.Title = "Index";
+    List<EmpresaDTO> empresas = ViewBag.Empresas;
 }
 <br />
 <br />
-<div class="text-center">
-    @if (TempData["MensagemSucesso"] != null)
-    {
-        <div class="alert alert-success" role="alert">
-            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-            @TempData["MensagemSucesso"]
-        </div>}
-    @if (TempData["MensagemErro"] != null)
-    {
-        <div class="alert alert-danger" role="alert">
-            <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
-            @TempData["MensagemErro"]
-        </div>
-    }
-</div>
-<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormEmpresa()">Cadastrar</button>
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormEmpresa()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
 <div class="modal fade" id="cadastroModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -39,61 +24,63 @@
         </div>
     </div>
 </div>
-<form method="get">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">RazaoSocial</th>
-                <th scope="col">NumeroEmpregados</th>
-                <th scope="col">CNAE</th>
-                <th scope="col">DataCadastro</th>
-                <th scope="col">Observação</th>
-                <th scope="col">CNPJ</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Complemento</th>
-                <th scope="col">Bairro</th>
-                <th scope="col">CEP</th>
-                <th scope="col">CNPJ</th>
-                <th scope="col">Atv. Economica</th>
-                <th scope="col">Cidade</th>
-                <th scope="col">Ativa</th>
-            </tr>
-        </thead>
-        <tbody>
 
-            @foreach (EmpresaDTO empresa in Model)
-            {
-                <tr>
-                    <th scope="row">@empresa.RazaoSocial</th>
-                    <td>@empresa.NumeroEmpregados</td>
-                    <td>@empresa.CNAE</td>
-                    <td>@empresa.Data_Cadastro</td>
-                    <td>@empresa.Observacao</td>
-                    <td>@empresa.CNPJ</td>
-                    <td>@empresa.Endereco</td>
-                    <td>@empresa.Complemento</td>
-                    <td>@empresa.Bairro</td>
-                    <td>@empresa.CEP</td>
-                    <td>@empresa.CNPJ</td>
-                    <td>@empresa.Atividade_Economica</td>
-                    <td>@empresa.Cidade</td>
-                    <td>
-                        @if (empresa.Ativa)
-                        {
-                            <img src="~/Content/Images/checked.png" />
-                        }
-                        else
-                        {
-                            <img src="~/Content/Images/nonChecked.png" />
-                        }
-
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</form>
-
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">RazaoSocial</th>
+                        <th scope="col">NumeroEmpregados</th>
+                        <th scope="col">CNAE</th>
+                        <th scope="col">DataCadastro</th>
+                        <th scope="col">Observação</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">Endereço</th>
+                        <th scope="col">Complemento</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">CEP</th>
+                        <th scope="col">CNPJ</th>
+                        <th scope="col">Atv. Economica</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Ativo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dado in empresas)
+                    {
+                        <tr>
+                            <td scope="row">@dado.RazaoSocial</td>
+                            <td>@dado.NumeroEmpregados</td>
+                            <td>@dado.CNAE</td>
+                            <td>@dado.DataCadastro</td>
+                            <td>@dado.Observacao</td>
+                            <td>@dado.CNPJ</td>
+                            <td>@dado.Endereco</td>
+                            <td>@dado.Complemento</td>
+                            <td>@dado.Bairro</td>
+                            <td>@dado.CEP</td>
+                            <td>@dado.CNPJ</td>
+                            <td>@dado.AtividadeEconomica</td>
+                            <td>@dado.Cidade</td>
+                            <td>
+                                @if (dado.Ativo)
+                                {
+                                    <img src="~/Content/Images/checked.png" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/Images/nonChecked.png" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 <script>
     async function loadFormEmpresa() {
@@ -103,6 +90,45 @@
         let parsedResponse = await response.text();
 
         document.getElementById('bodyModal').innerHTML = parsedResponse;
+        loadCities();
+        loadAtividadesEconomicas();
+    }
+    async function loadCities() {
+
+        const selectCidade = document.getElementById('cidades');
+
+        const url = '/Empresa/Cidades';
+
+        const response = await fetch(url, { method: 'post' });
+        const parsedResponse = await response.json();
+
+        if (parsedResponse) {
+            const cities = parsedResponse.map(city => `${city.nome} - ${city.municipio.microrregiao.mesorregiao.UF.sigla}`);
+            let options = "";
+            selectCidade.innerHTML = "";
+            cities.forEach(cidades => {
+                options += `<option value ="${cidades}">${cidades}</option>`;
+            });
+            selectCidade.innerHTML = options;
+        }
+    }
+    async function loadAtividadesEconomicas() {
+        const selectAtividadeEconomica = document.getElementById('atividades-economicas');
+
+        const url = '/Empresa/AtividadesEconomicas';
+
+        const response = await fetch(url, { method: 'post' });
+        const parsedResponse = await response.json();
+
+        if (parsedResponse) {
+            const economicActivities = parsedResponse.map(economicActivity => `${economicActivity.id} - ${economicActivity.grupo.divisao.secao.descricao}`);
+            let options = "";
+            selectAtividadeEconomica.innerHTML = "";
+            economicActivities.forEach(atividadesEconomicas => {
+                options += `<option value="${atividadesEconomicas}">${atividadesEconomicas}</option>`;
+            });
+            selectAtividadeEconomica.innerHTML = options;
+        }
     }
     function submitFormEmpresa() {
         const form = document.getElementById('formEmpresa');
@@ -113,9 +139,35 @@
         }
         var isValid = ValidateEmpresa();
         if (isValid) {
-            form.submit();
+            const empresa = {
+                RazaoSocial: document.getElementById('razao-social').value,
+                NumeroEmpregados: document.getElementById('numero-empregados').value,
+                CNAE: document.getElementById('cnae').value,
+                DataCadastro: document.getElementById('data-cadastro').value,
+                Observacao: document.getElementById('observacao').value,
+                CNPJ: document.getElementById('cnpj').value,
+                Endereco: document.getElementById('endereco').value,
+                Complemento: document.getElementById('complemento').value,
+                Bairro: document.getElementById('bairro').value,
+                CEP: document.getElementById('cep').value,
+                Cidade: document.getElementById('cidade').value,
+                AtividadeEconomica: document.getElementById('atividades-economicas').value,
+                Ativo: document.getElementById('ativo-empresa').checked
+            };
+            const json = JSON.stringify(empresa);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Empresa/Salvar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }
     }
+
 </script>

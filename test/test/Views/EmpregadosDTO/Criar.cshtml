@@ -5,10 +5,8 @@
     ViewBag.Title = "Criar";
     List<SetorModel> setores = ViewBag.Setor;
     List<FuncaoModel> funcoes = ViewBag.Funcao;
-    List<EmpresaDTO> empresas = ViewBag.Empresa;
 }
-
-<form action="MultiEmpresas/Salvar" id="formMultiEmpresas" method="post">
+<form action="/EmpregadosDTO/Salvar" id="form" method="post">
     <div>
         <div class="div-form mb-3">
             <div>
@@ -18,7 +16,7 @@
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="text" class="input" id="cpf-me" name="CPF" onkeyup="mascara('###.###.###-##',this,event,true)" maxlength="14" required />
+                    <input type="text" class="input" id="cpf" name="CPF" onkeyup="mascara('###.###.###-##',this,event,true)" maxlength="14" />
                 </div>
                 <div><span id="cpfAlert" class="text-danger size-text-danger"></span></div>
             </div>
@@ -27,14 +25,14 @@
             <label class="lb-class">
                 Empresa
             </label>
-            <select class="input" id="selected-me" name="Empresa">
+            <select name="Empresa" class="input" id="selected">
                 <option value=""></option>
-                @foreach (var empresa in empresas)
+                @foreach (var empresa in ViewBag.Empresa)
                 {
                     <option value="@empresa.ID">@empresa.RazaoSocial</option>
                 }
             </select>
-            <div><span id="empresaAlert" class="text-danger size-text-danger"></span></div>
+            <div><span id="cpfAlert" class="text-danger size-text-danger"></span></div>
         </div>
         <div class="div-form mb-3">
             <div>
@@ -44,33 +42,45 @@
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="text" class="input" id="nome-me" name="Nome" required/>
+                    <input type="text" class="input" id="nome" name="Nome" />
                 </div>
                 <div><span id="nomeAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                RG ou Passaporte
-            </label>
             <div>
-                <input type="text" class="input" id="rg-passaporte-me" name="RGPassaporte" onkeyup="mascara('##.###.###-#',this,event,true)" maxlength="12" />
+                <label class="lb-class">
+                    RG / Passaporte
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="rg-passaporte" name="RGPassaporte" onkeyup="mascara('##.###.###-#',this,event,true)" maxlength="12" />
+                </div>
             </div>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Matricula eSocial
-            </label>
             <div>
-                <input type="text" class="input" id="matricula-e-social-me" name="MatriculaESocial"/>
+                <label class="lb-class">
+                    Matricula eSocial
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="matricula-e-social" name="MatriculaESocial" />
+                </div>
             </div>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Nit / Pis / Pasep
-            </label>
             <div>
-                <input type="text" class="input" id="nit-pis-pasep-me" name="NitPisPasep"/>
+                <label class="lb-class">
+                    Nit / Pis / Pasep
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="nit-pis-pasep" name="NitPisPasep" />
+                </div>
             </div>
         </div>
         <div class="div-form mb-3">
@@ -81,28 +91,32 @@
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="text" class="input" id="nome-mae-me" name="NomeMae"/>
+                    <input type="text" class="input" id="nome-mae" name="NomeMae" />
                 </div>
                 <div><span id="nomeMaeAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Nacionalidade
-            </label>
             <div>
-                <input type="text" class="input" id="nacionalidade-me" name="Nacionalidade"/>
+                <label class="lb-class">
+                    Macionalidade
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="nacionalidade" name="Nacionalidade" />
+                </div>
             </div>
         </div>
         <div class="div-form mb-3">
             <div>
                 <label class="lb-class">
-                    Data de Nascimento
+                    Data Nascimento
                 </label>
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="date" class="input" id="data-nascimento-me" name="Data_Nascimento" required/>
+                    <input type="date" class="input" id="data-nascimento" name="DataNascimento" required />
                 </div>
                 <div><span id="dataNascAlert" class="text-danger size-text-danger"></span></div>
             </div>
@@ -113,7 +127,7 @@
             </label>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="date" class="input" id="ultimo-aso-me" name="Ultimo_ASO"/>
+                    <input type="date" class="input" id="ultimo-aso" name="Ultimo_ASO" />
                 </div>
             </div>
         </div>
@@ -125,9 +139,8 @@
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="email" class="input" id="email-me" name="Email" required/>
+                    <input type="email" class="input" id="email" name="Email" required />
                 </div>
-                <div>@Html.ValidationMessageFor(model => model.Email) </div>
                 <div><span id="emailAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
@@ -139,26 +152,30 @@
             </div>
             <div class="div-input-validatiton">
                 <div>
-                    <input type="tel" class="input" id="celular-me" name="Celular" onkeyup="mascara('(##)#####-####',this,event,true)" maxlength="14"/>
+                    <input type="tel" class="input" id="celular" name="Celular" onkeyup="mascara('(##)#####-####',this,event,true)" maxlength="14" />
                 </div>
-                <div><span id="celularAlert" class="text-danger size-text-danger"></span></div>
+                <div><span id="celularAlert" class="text-danger size-text-danger"></span> </div>
             </div>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Sexo
-            </label>
-            <select name="Sexo" class="input" id="sexo-me">
+            <div>
+                <label class="lb-class">
+                    Sexo
+                </label>
+            </div>
+            <select name="Sexo" class="input" id="sexo">
                 <option></option>
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
             </select>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Tipo Sanguineo
-            </label>
-            <select class="input" id="tipo-sanguineo-me" name="TipoSanguineo" >
+            <div>
+                <label class="lb-class">
+                    Tipo Sanguineo
+                </label>
+            </div>
+            <select name="TipoSanguineo" class="input" id="tipo-sanguineo">
                 <option></option>
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
@@ -170,12 +187,13 @@
                 <option value="O-">O-</option>
             </select>
         </div>
-
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Função
-            </label>
-            <select name="Funcao" class="input" id="funcao-me">
+            <div>
+                <label class="lb-class">
+                    Função
+                </label>
+            </div>
+            <select name="NomeFuncao" class="input" id="funcao">
                 <option value=""></option>
                 @foreach (var funcao in funcoes)
                 {
@@ -187,10 +205,12 @@
             </select>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Setor
-            </label>
-            <select name="Setor" class="input" id="setor-me">
+            <div>
+                <label class="lb-class">
+                    Setor
+                </label>
+            </div>
+            <select name="NomeSetor" class="input" id="setor">
                 <option value=""></option>
                 @foreach (var setor in setores)
                 {
@@ -203,11 +223,15 @@
             </select>
         </div>
         <div class="div-form mb-3">
-            <label class="lb-class">
-                Cod. eSocial
-            </label>
             <div>
-                <input type="text" class="input" id="cod-categoria-e-social-me" name="Cod_Categoria_eSocial"/>
+                <label class="lb-class">
+                    Cod. eSocial
+                </label>
+            </div>
+            <div class="div-input-validatiton">
+                <div>
+                    <input type="text" class="input" id="cod-categoria-e-social" name="CodCategoriaeSocial" />
+                </div>
             </div>
         </div>
         <div class="div-form mb-3">
@@ -215,7 +239,7 @@
                 Ativo
             </label>
             <div>
-                <input type="checkbox" class="input" id="ativo-me" name="Ativo"/>
+                <input type="checkbox" class="input" id="ativo" name="Ativo" />
             </div>
         </div>
     </div>

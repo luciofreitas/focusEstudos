@@ -17,16 +17,15 @@
         </select>
     </div>
     <div class="col-md-12">
-        <button type="button" onclick="loadSelecaoMultiEmpresa(this)">Pesquisar...</button>
+        <button type="button"class="btn btn-dark" style="margin-top:5px;" onclick="loadSelecaoMultiEmpresa(this)"><span class="glyphicon glyphicon-search"></span> Pesquisar</button>
     </div>  
 </div>
-
 <script>
     async function loadSelecaoMultiEmpresa() {
         var selectedEmpresas = $('.js-example-basic-multiple').val();
         if (selectedEmpresas != null && selectedEmpresas.length > 0) {
             var empresasQueryString = selectedEmpresas.join('&empresaID=');
-            localStorage.setItem('selectedEmpresas', JSON.stringify(selectedEmpresas));
+            localStorage.setItem('selectedEmpresasEdicao', JSON.stringify(selectedEmpresas));
             window.location.href = `/MultiEmpresas/MultiEmpresaSelecaoEmpregados?empresaID=${empresasQueryString}`;
         }
     }

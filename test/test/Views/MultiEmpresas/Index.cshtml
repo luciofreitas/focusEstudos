@@ -2,6 +2,7 @@
 @model List<EmpregadosDTO>
 @{
     ViewBag.Title = "Index";
+    List<EmpregadosDTO> dados = ViewBag.EmpresaSelecaoEmpregado;
 }
 <br />
 <br />
@@ -16,16 +17,14 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body" id="bodyModalMultiEmpresas">
-
             </div>
             <div class="modal-footer mb-3">
-                <button type="submit" class="btn btn-atualizar" onsubmit="() => Validate()" onclick="submitFormMultiEmpresas()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateMultiEmpresas()" onclick="submitFormMultiEmpresas()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
                 <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
             </div>
         </div>
     </div>
 </div>
-
 <div class="modal fade" id="edicaoModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -68,18 +67,18 @@
         @foreach (var dado in Model)
         {
             <tr data-empresa="@dado.Empresa" id="listaMultiEmpresasEmpregados">
-                <th scope="row">@dado.Nome</th>
+                <td scope="row">@dado.Nome</td>
                 <td>@dado.CPF</td>
-                <td>@dado.RG_Passaport</td>
-                <td>@dado.Data_Nascimento</td>
-                <td>@dado.Ultimo_ASO</td>
-                <td>@dado.Nome_Setor</td>
-                <td>@dado.Nome_Setor_Ingles</td>
-                <td>@dado.Nome_Funcao</td>
-                <td>@dado.Nome_Funcao_Ingles</td>
-                <td>@dado.Razao_Social</td>
+                <td>@dado.RGPassaporte</td>
+                <td>@dado.DataNascimento</td>
+                <td>@dado.UltimoASO</td>
+                <td>@dado.NomeSetor</td>
+                <td>@dado.NomeSetorIngles</td>
+                <td>@dado.NomeFuncao</td>
+                <td>@dado.NomeFuncaoIngles</td>
+                <td>@dado.RazaoSocial</td>
                 <td>@dado.CNPJ</td>
-                <td>@dado.Atividade_Economica</td>
+                <td>@dado.AtividadeEconomica</td>
                 <td>@dado.Cidade</td>
                 <td>@dado.Estado</td>
                 <td style="display: flex; justify-content: space-around;">
@@ -100,12 +99,12 @@
 
         document.getElementById('bodyModalMultiEmpresas').innerHTML = parsedResponse;
 
-        var empresas = JSON.parse(localStorage['selectedEmpresas'])
+        var empresas = JSON.parse(localStorage['selected-me'])
         if (empresas) {
-            var options = document.querySelectorAll('#selectedEmpresas option');
+            var options = document.querySelectorAll('#selected-me option');
             options.forEach(option => {
                 if (empresas.indexOf(option.value) == -1) {
-                    $(`#selectedEmpresas option[value='${option.value}'`).remove()
+                    $(`#selected-me option[value='${option.value}'`).remove()
                 }
             });
         }
@@ -118,12 +117,12 @@
 
         document.getElementById('bodyModalEdicaoMultiEmpresas').innerHTML = parsedResponse;
 
-        var empresas = JSON.parse(localStorage['selectedEdicaoMultiEmpresas'])
+        var empresas = JSON.parse(localStorage['selected-edicao-me'])
         if (empresas) {
-            var options = document.querySelectorAll('#selectedEdicaoMultiEmpresas option');
+            var options = document.querySelectorAll('#selected-edicao-me option');
             options.forEach(option => {
                 if (empresas.indexOf(option.value) == -1) {
-                    $(`#selectedEdicaoMultiEmpresas option[value='${option.value}']`).remove()
+                    $(`#selected-edicao-me option[value='${option.value}']`).remove()
                 }
             });
         }
@@ -135,9 +134,40 @@
             console.error("Formulário não encontrado")
             return;
         }
-        var isValid = Validate();
+        var isValid = ValidateMultiEmpresas();
         if (isValid) {
-            form.submit();
+            const empregadosME = {
+                CPF: document.getElementById('cpf-me').value,
+                Empresa: document.getElementById('selected-me').value ,
+                Nome: document.getElementById('nome-me').value,
+                RGPassaporte: document.getElementById('rg-passaporte-me').value,
+                MatriculaESocial: document.getElementById('matricula-e-social-me').value,
+                NitPisPasep: document.getElementById('nit-pis-pasep-me').value,
+                NomeMae: document.getElementById('nome-mae-me').value,
+                Nacionalidade: document.getElementById('nacionalidade-me').value,
+                DataNascimento: document.getElementById('data-nascimento-me').value,
+                UltimoASO: document.getElementById('ultimo-aso-me').value,
+                Email: document.getElementById('email-me').value,
+                Celular: document.getElementById('celular-me').value,
+                Sexo: document.getElementById('sexo-me').value,
+                TipoSanguineo: document.getElementById('tipo-sanguineo-me').value,
+                NomeFuncao: document.getElementById('funcao-me').value,
+                NomeSetor: document.getElementById('setor-me').value,
+                CodCategoriaeSocial: document.getElementById('cod-categoria-e-social-me').value,
+                Ativo: document.getElementById('ativo-me').checked
+
+            };
+            const json = JSON.stringify(empregadosME);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/MultiEmpresas/Salvar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }
@@ -151,10 +181,18 @@
         var isValid = ValidateEditionMultiEmpresas();
         if (isValid) {
             event.preventDefault();
-            var data = new FormData(form);
-            var object = {};
-            data.forEach((value, key) => object[key] = value);
-            var json = JSON.stringify(object)
+            const empregadosEdicaoME = {
+                ID: document.getElementById('id-edicao-me').value,
+                CPF: document.getElementById('cpf-edicao-me').value,
+                Empresa: document.getElementById('selected-edicao-me').value,
+                Nome: document.getElementById('nome-edicao-me').value,
+                RGPassaporte: document.getElementById('rg-passaporte-edicao-me').value,
+                DataNascimento: document.getElementById('data-nascimento-edicao-me').value,
+                UltimoASO: document.getElementById('ultimo-aso-edicao-me').value,
+                NomeFuncao: document.getElementById('funcao-edicao-me').value,
+                NomeSetor: document.getElementById('setor-edicao-me').value
+            };
+            const json = JSON.stringify(empregadosEdicaoME);
             $("btnConfirmar").prop("disabled", true);
             $("btnApagar").prop("disabled", true);
             $.ajax({

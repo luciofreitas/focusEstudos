@@ -12,6 +12,6 @@ namespace test.Models
         public int Id { get; set; }
         public string Nome { get; set; }
         public string Nome_Ingles { get; set; }
-        public bool Ativa { get; set; }
+        public bool Ativo { get; set; }
     }
 }

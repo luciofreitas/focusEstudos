@@ -4,35 +4,45 @@
     ViewBag.Title = "Criação de Setor";
 }
 
-
-@using (Html.BeginForm("Salvar", "Setor", FormMethod.Post, new { @id = "formSetor" }))
-{
+<form action="/Setor/Salvar" id="formSetor" method="post">
     <div>
         <div class="div-form mb-3">
             <div>
-                <label class="lb-class">@Html.LabelFor(model => model.Nome)</label>
+                <label class="lb-class">
+                    Nome
+                </label>
             </div>
             <div class="div-input-validatiton">
-                <div>@Html.TextBoxFor(model => model.Nome, new { @class = "input", id = "nome" })</div>
+                <div>
+                    <input type="text" class="input" id="nome-setor" name="Nome" />
+                </div>
                 <div><span id="nomeAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
         <div class="div-form mb-3">
             <div>
-                <label class="lb-class">@Html.LabelFor(model => model.Nome_Ingles)</label>
+                <label class="lb-class">
+                    Nome em Ingles
+                </label>
             </div>
             <div class="div-input-validatiton">
-                <div>@Html.TextBoxFor(model => model.Nome_Ingles, new { @class = "input", id = "nome-ingles" })</div>
+                <div>
+                    <input type="text" class="input" id="nome-ingles-setor" name="Nome_Ingles"/>
+                </div>
                 <div><span id="nomeInglesAlert" class="text-danger size-text-danger"></span></div>
             </div>
         </div>
         <div class="div-form mb-3">
             <div>
-                <label class="lb-class">@Html.LabelFor(model => model.Ativa)</label>
+                <label class="lb-class">
+                    Ativa
+                </label>
             </div>
             <div class="div-input-validatiton">
-                <div>@Html.CheckBoxFor(model => model.Ativa, new { @class = "input", id = "ativa" })</div>
+                <div>
+                    <input type="checkbox" class="input" id="ativo-setor" name="Ativo" value="" />
+                </div>
             </div>
         </div>
     </div>
-}
+</form>

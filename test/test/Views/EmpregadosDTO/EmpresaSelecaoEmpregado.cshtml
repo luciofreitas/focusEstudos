@@ -10,7 +10,7 @@
     <option value="">Selecione a Empresa</option>
     @foreach (var empresa in ViewBag.EmpresaSelecaoEmpregado)
     {
-        if (empresa.Ativa)
+        if (empresa.Ativo)
         {
             <option value="@empresa.ID">@empresa.RazaoSocial</option>
         }

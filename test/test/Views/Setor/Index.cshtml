@@ -2,10 +2,11 @@
 @model List<SetorModel>
 @{
     ViewBag.Title = "Index";
+    List<SetorModel> setores = ViewBag.Setores;
 }
 <br />
 <br />
-<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormSetor()">Cadastrar</button>
+<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormSetor()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
 
 <div class="modal fade" id="cadastroModal" role="dialog">
     <div class="modal-dialog">
@@ -18,7 +19,7 @@
 
             </div>
             <div class="modal-footer mb-3">
-                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateSetor()" onclick="submitFormSetor()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
+                <button type="submit" class="btn btn-atualizar" onsubmit="() => ValidateSetor()" onclick="submitFormSetor()"><span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #ffffff;"></span> Confirmar</button>
                 <button type="reset" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true" style="color: #000000;"></span> Cancelar</button>
             </div>
         </div>
@@ -29,21 +30,21 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Função</th>
-                <th scope="col">Function</th>
-                <th scope="col">Ativa</th>
+                <th scope="col">Setor</th>
+                <th scope="col">Sector</th>
+                <th scope="col">Ativo</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Any())
+            @if (setores != null && setores.Any())
             {
-                foreach (SetorModel setor in Model)
+                foreach (SetorModel setor in setores)
                 {
                     <tr>
-                        <th scope="row">@setor.Nome</th>
+                        <td scope="row">@setor.Nome</td>
                         <td>@setor.Nome_Ingles</td>
                         <td>
-                            @if (setor.Ativa)
+                            @if (setor.Ativo)
                             {
                                 <img src="~/Content/Images/checked.png" />
                             }
@@ -77,7 +78,26 @@
         }
         var isValid = ValidateSetor();
         if (isValid) {
-            form.submit();
+            if (isValid) {
+                const setor = {
+                    Nome: document.getElementById('nome-setor').value,
+                    Nome_Ingles: document.getElementById('nome-ingles-setor').value,
+                    Ativo: document.getElementById('ativo-setor').checked
+                };
+                const json = JSON.stringify(setor);
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/Setor/Salvar",
+                    data: json,
+                    processData: false,
+                    cache: false,
+                    timeout: 800000
+                });
+                setTimeout(() => window.location.reload(), 500);
+            } else {
+                console.log("Formulario inválido! Verifique os campos");
+            }
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }

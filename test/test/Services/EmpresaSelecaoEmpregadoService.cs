@@ -27,7 +27,7 @@ namespace test.Services
 
                             empresa.ID = int.Parse(reader["ID"].ToString());
                             empresa.RazaoSocial = reader["RazaoSocial"].ToString();
-                            empresa.Ativa = bool.Parse(reader["Ativa"].ToString());
+                            empresa.Ativo = bool.Parse(reader["Ativa"].ToString());
                             list.Add(empresa);
                         }
                     }

@@ -2,10 +2,11 @@
 @model List<FuncaoModel>
 @{
     ViewBag.Title = "Index";
+    List<FuncaoModel> funcoes = ViewBag.Funcoes;
 }
 <br />
 <br />
-<button type="button" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormFuncao()">Cadastrar</button>
+<button type="button"class="btn btn-dark" data-toggle="modal" data-target="#cadastroModal" onclick="loadFormFuncao()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #ffffff;"></span> Cadastrar</button>
 
 <div class="modal fade" id="cadastroModal" role="dialog">
     <div class="modal-dialog">
@@ -35,15 +36,15 @@
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Any())
+            @if (funcoes != null && funcoes.Any())
             {
-                foreach (FuncaoModel funcao in Model)
+                foreach (FuncaoModel funcao in funcoes)
                 {
                     <tr>
-                        <th scope="row">@funcao.Nome</th>
+                        <td scope="row">@funcao.Nome</td>
                         <td>@funcao.Nome_Ingles</td>
                         <td>
-                            @if (funcao.Ativa)
+                            @if (funcao.Ativo)
                             {
                                 <img src="~/Content/Images/checked.png" />
                             }
@@ -77,7 +78,22 @@
         }
         var isValid = ValidateFuncao();
         if (isValid) {
-            form.submit();
+            const funcao = {
+                Nome: document.getElementById('nome-funcao').value,
+                Nome_Ingles: document.getElementById('nome-ingles-funcao').value,
+                Ativo: document.getElementById('ativo-funcao').checked
+            };
+            const json = JSON.stringify(funcao);
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "/Funcao/Salvar",
+                data: json,
+                processData: false,
+                cache: false,
+                timeout: 800000
+            });
+            setTimeout(() => window.location.reload(), 500);
         } else {
             console.log("Formulario inválido! Verifique os campos");
         }

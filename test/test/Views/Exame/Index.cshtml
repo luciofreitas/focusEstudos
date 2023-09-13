@@ -7,8 +7,8 @@
 <h2>Exames</h2>
 <br />
 <div class="divBtnExcelInserir">
-    <button type="submit" class="btnExcel"><span class="glyphicon glyphicon-file" aria-hidden="true" style="color: #000000;"></span> Exportar para Excel</button>
-    <button type="submit" class="btnInserir" data-toggle="modal" data-target="#cadastroModalExame" onclick="loadFormExame()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #000000;"></span> Inserir</button>
+    <button type="submit" class="btn btn-dark btnExcel" style="margin-right: 5px;"><span class="glyphicon glyphicon-file" aria-hidden="true" style="color: #000000;"></span> Exportar para Excel</button>
+    <button type="submit" class="btn btn-dark btnInserir" data-toggle="modal" data-target="#cadastroModalExame" onclick="loadFormExame()"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="color: #000000;"></span> Inserir</button>
 </div>
 <div class="modal fade" id="cadastroModalExame" role="dialog">
     <div class="modal-dialog">
@@ -167,20 +167,6 @@
 
         document.getElementById('bodyModalEdicaoExame').innerHTML = parsedResponse;
     }
-    //function submitFormExame() {
-    //    const form = document.getElementById('formExame');
-
-    //    if (!form) {
-    //        console.error("Formulário não encontrado")
-    //        return;
-    //    }
-    //    var isValid = ValidateExame();
-    //    if (isValid) {
-    //        form.submit();
-    //    } else {
-    //        console.log("Formulario inválido! Verifique os campos");
-    //    }
-    //}
     function submitFormExame() {
         const form = document.getElementById('formExame');
 

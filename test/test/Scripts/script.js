@@ -2,8 +2,8 @@
     $('.alert').hide('hide');
 });
 function ValidateSetor() {
-    var Nome = document.getElementById("nome").value;
-    var Nome_Ingles = document.getElementById("nome-ingles").value;
+    var Nome = document.getElementById("nome-setor").value;
+    var Nome_Ingles = document.getElementById("nome-ingles-setor").value;
 
     var isValid = true;
 
@@ -11,7 +11,7 @@ function ValidateSetor() {
         document.getElementById("nomeAlert").innerHTML = 'O nome é obrigatório';
         isValid = false;
     }
-    if (Nome_Ingles == "" || Sigla.trim() === "") {
+    if (Nome_Ingles == "" || Nome_Ingles.trim() === "") {
         document.getElementById("nomeInglesAlert").innerHTML = 'O nome em ingles é obrigatório';
         isValid = false;
     }
@@ -19,8 +19,8 @@ function ValidateSetor() {
 }
 
 function ValidateFuncao() {
-    var Nome = document.getElementById("nome").value;
-    var Nome_Ingles = document.getElementById("nome-ingles").value;
+    var Nome = document.getElementById("nome-funcao").value;
+    var Nome_Ingles = document.getElementById("nome-ingles-funcao").value;
 
     var isValid = true;
 
@@ -28,7 +28,7 @@ function ValidateFuncao() {
         document.getElementById("nomeAlert").innerHTML = 'O nome é obrigatório';
         isValid = false;
     }
-    if (Nome_Ingles == "" || Sigla.trim() === "") {
+    if (Nome_Ingles == "" || Nome_Ingles.trim() === "") {
         document.getElementById("nomeInglesAlert").innerHTML = 'O nome em ingles é obrigatório';
         isValid = false;
     }
@@ -36,8 +36,8 @@ function ValidateFuncao() {
 }
 
 function ValidateEstado() {
-    var Nome = document.getElementById("nome").value;
-    var Sigla = document.getElementById("siglas").value;
+    var Nome = document.getElementById("nome-es").value;
+    var Sigla = document.getElementById("siglas-es").value;
 
     var isValid = true;
 
@@ -53,8 +53,8 @@ function ValidateEstado() {
 }
 
 function ValidateCidade() {
-    var Nome = document.getElementById("nome").value;
-    var Estado = document.getElementById("estado").value;
+    var Nome = document.getElementById("nome-cid").value;
+    var Estado = document.getElementById("estado-cid").value;
 
     var isValid = true;
 
@@ -71,8 +71,8 @@ function ValidateCidade() {
 }
 
 function ValidateAtividadeEconomica() {
-    var Codigo = document.getElementById("codigo").value;
-    var Nome = document.getElementById("nome").value;
+    var Codigo = document.getElementById("codigo-ae").value;
+    var Nome = document.getElementById("nome-ae").value;
 
     var isValid = true;
 
@@ -196,9 +196,9 @@ function Validate() {
 }
 
 function ValidateEdition() {
-    var CPF = document.getElementById("cpf").value;
-    var Nome = document.getElementById("nome").value;
-    var Data_Nascimento = document.getElementById("data-nascimento").value;
+    var CPF = document.getElementById("cpf-edicao").value;
+    var Nome = document.getElementById("nome-edicao").value;
+    var Data_Nascimento = document.getElementById("data-nascimento-edicao").value;
 
     var isValid = true;
 
@@ -218,10 +218,33 @@ function ValidateEdition() {
     }
     return isValid;
 }
+function ValidateMultiEmpresas() {
+    var CPF = document.getElementById("cpf-me").value;
+    var Nome = document.getElementById("nome-me").value;
+    var Data_Nascimento = document.getElementById("data-nascimento-me").value;
+
+    var isValid = true;
+
+    if (CPF == null || CPF === "") {
+        document.getElementById("cpfAlertMultiEmpresas").innerHTML = 'O cpf é obrigatório';
+        isValid = false;
+    }
+
+    if (Nome == "" || Nome.trim() === "") {
+        document.getElementById("nomeAlertMultiEmpresas").innerHTML = 'O nome é obrigatório';
+        isValid = false;
+    }
+
+    if (Data_Nascimento == "" || Data_Nascimento.trim() === "") {
+        document.getElementById("dataNascAlertMultiEmpresas").innerHTML = 'A data de nascimento é obrigatório';
+        isValid = false;
+    }
+    return isValid;
+}
 function ValidateEditionMultiEmpresas() {
-    var CPF = document.getElementById("cpfMultiEmpresas").value;
-    var Nome = document.getElementById("nomeMultiEmpresas").value;
-    var Data_Nascimento = document.getElementById("data-nascimentoMultiEmpresas").value;
+    var CPF = document.getElementById("cpf-edicao-me").value;
+    var Nome = document.getElementById("nome-edicao-me").value;
+    var Data_Nascimento = document.getElementById("data-nascimento-edicao-me").value;
 
     var isValid = true;
 
